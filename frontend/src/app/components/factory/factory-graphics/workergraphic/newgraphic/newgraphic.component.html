@@ -1,0 +1,7 @@
+<app-modal-graphic></app-modal-graphic>
+<div *ngFor="let graphic of getGraphics()" class="chart-custom" style="margin-top: 3%;">
+    <button type="button" class="btn btn-default pull-right" (click)="addFavority(graphic)">
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>Sık Kullanılanlara Ekle
+    </button>
+    <canvas baseChart [datasets]="graphic.data" [labels]="graphic.label" chartType="bar"></canvas>
+</div>

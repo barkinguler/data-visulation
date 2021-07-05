@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-xs-12">
+      <div *ngIf="machinePredict>=0.5 && machinePredict <=0.7" class="alert alert-warning" role="alert">
+        30 gün içerisinde arızalanma ihtimali %{{machinePredict*100}} 
+    </div>
+    <div *ngIf="machinePredict>=0.7" class="alert alert-danger" role="alert">
+        30 gün içerisinde arızalanma ihtimali %{{machinePredict*100}} KAYIT OLUNAMAZ!!
+    </div>
+    <div *ngIf="machinePredict < 0.5 && machinePredict!=null" class="alert alert-success" role="alert">
+        30 gün içerisinde arızalanma ihtimali %{{machinePredict*100}} 
+    </div>
+      <hr>
+        <div class="col-xs-12" *ngFor="let equipment of getEquipments()">
+
+            <div *ngIf="!equipment.isActive || equipment.workerId != workerId" class="alert alert-danger">
+              <p>Ekipman Takılmadı!</p>
+            </div>
+          <div *ngIf="equipment.isActive  && equipment.workerId == workerId " class="alert alert-success">
+            <p>Ekipman Takıldı</p>
+          </div>
+            <p style="text-align: center;"> <strong>Ekipman Numarası: </strong>{{equipment.id}}</p>
+            <p style="text-align: center;"> <strong>Ekipman Adı: </strong> {{equipment.name}}</p>
+            <p style="text-align: center;"> <strong>Ekipman Görevi: </strong> {{equipment.job}}</p>
+            <hr>
+          <div style=" display: flex;
+            justify-content: center;
+            align-items: center; margin-bottom: 9px;">
+            <button (click)="registerEquipment(equipment.id)"
+                    [disabled]="!(!equipment.isActive || equipment.workerId != workerId)" class="btn btn-success"
+                    style="margin-right: 3px;" type="button">Kontrol Et Ve Kayit Ol
+            </button>
+          </div>
+
+        </div>
+        <div class="col-xs-12">
+            <div style=" display: flex;
+            justify-content: center;
+            align-items: center;">
+              <button [disabled]="!this.isAllEquipmentActive || machinePredict>=0.7" class="btn btn-success" style="margin-right: 3px;"
+                      type="button"
+                      (click)="registerMachine()"> Makineye Kayıt Ol
+              </button>
+            </div>
+            <hr>
+        </div>
+
+    </div>
+</div>

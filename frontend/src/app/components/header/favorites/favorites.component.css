@@ -1,0 +1,8 @@
+.backdrop {
+    
+    background: rgba(0, 0, 0, 0.75);
+    
+  }
+  .modal {
+    overflow-y:auto;
+  }

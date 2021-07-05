@@ -1,0 +1,115 @@
+<div>
+  <app-message></app-message>
+</div>
+<form #form ngNativeValidate>
+  <div class="form-group">
+    <label for="exampleInputEmail1">ÇALIŞAN ADI</label>
+    <input [(ngModel)]="newWorker.firstName" class="form-control" id="firstName" minlength=3 name="firstName" required
+           placeholder="Çalışanınızın Adını Giriniz" type="text">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">ÇALIŞAN SOYADI</label>
+    <input [(ngModel)]="newWorker.lastName" class="form-control" id="lastName" minlength=3 name="lastName" required
+           placeholder="Çalışanınızın Soyadını Giriniz" type="text">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">ÇALIŞAN EMAIL</label>
+    <input [(ngModel)]='newWorker.email' aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1"
+           required
+           name="exampleInputEmail1" placeholder="Çalışanınızın Email Adresini Giriniz" type="email">
+    <small class="form-text text-muted" id="emailHelp">ornek@example.com</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">ÇALIŞAN TELEFON NUMARASI</label>
+    <input [(ngModel)]='newWorker.phoneNumber' class="form-control" id="height" maxlength=11 minlength=10 name="height"
+           required
+           placeholder="Çalışanınızın Telefon Numarasını Giriniz" type="number">
+    <small class="form-text text-muted" id="emailHelp">5554872834</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">ÇALIŞAN YAŞ</label>
+    <select [(ngModel)]="newWorker.age" class="form-control" name="age" required>
+      <option>Yaş</option>
+      <option>18</option>
+      <option>19</option>
+      <option>20</option>
+      <option>21</option>
+      <option>22</option>
+      <option>23</option>
+      <option>24</option>
+      <option>25</option>
+      <option>26</option>
+      <option>27</option>
+      <option>28</option>
+      <option>29</option>
+      <option>30</option>
+      <option>31</option>
+      <option>32</option>
+      <option>33</option>
+      <option>34</option>
+      <option>35</option>
+      <option>36</option>
+      <option>37</option>
+      <option>38</option>
+      <option>39</option>
+      <option>40</option>
+      <option>41</option>
+      <option>42</option>
+      <option>43</option>
+      <option>44</option>
+      <option>45</option>
+      <option>46</option>
+      <option>47</option>
+      <option>48</option>
+      <option>49</option>
+      <option>50</option>
+      <option>51</option>
+      <option>52</option>
+      <option>53</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">ÇALIŞAN KİLOSU</label>
+    <input [(ngModel)]="newWorker.weight" class="form-control" id="weight" max="500" min="40" name="weight" required
+           placeholder="Çalışanınızın Kilosunu Giriniz" type="number">
+
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">ÇALIŞAN BOYU</label>
+    <input [(ngModel)]='newWorker.length' class="form-control" id="height" max="300" min="110" name="height" required
+           placeholder="Çalışanınızın Boyunu Giriniz" type="number">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">ÇALIŞAN KAN GRUBU</label>
+    <select [(ngModel)]='newWorker.bloodGroup' class="form-control" name="bloodGroup" required>
+      <option>0 Rh-pozitif</option>
+      <option>0 Rh-negatif</option>
+      <option>A Rh-pozitif</option>
+      <option>A Rh-negatif</option>
+      <option>B Rh-pozitif</option>
+      <option>B Rh-negatif</option>
+      <option>AB Rh-pozitif</option>
+      <option>AB Rh-pozitif</option>
+      <option>Bilmiyorum</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="workPlaceId">ÇALIŞANIN İŞYERİ NUMARASI</label>
+    <select [(ngModel)]='newWorker.workplaceId'  class="form-control" name="workPlaceId" required>
+     
+       <option *ngFor="let workPlace of this.workPlaces">
+         {{workPlace.id}}
+       </option>
+     
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">ÇALIŞANIN BİLİNEN HASTALIKLARI</label>
+    <textarea [(ngModel)]="newWorker.disease" class="form-control" id="exampleFormControlTextarea1" required
+              name="exampleFormControlTextarea1" rows="3"></textarea>
+    <small>Kalp, Şeker vs.</small>
+  </div>
+
+  <button (click)=" form.checkValidity() ? kayitEt() : null" class="btn btn-primary">Kayıt Et</button>
+
+</form>

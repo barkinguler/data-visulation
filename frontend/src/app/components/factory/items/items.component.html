@@ -1,0 +1,19 @@
+<div class="col-xs-12">
+
+  <div class="form-group">
+    <label for="search">Arama İşlemi</label>
+    <input [(ngModel)]="filterInformation" class="form-control" id="search" aria-describedby="searchHelp"
+      placeholder="Aranacak bilgi">
+    <small class="form-text text-muted">Çalışanın adına veya Id bilgisine göre arama yapılabilir</small>
+  </div>
+
+</div>
+<div class="col-xs-12">
+
+  <a style="cursor: pointer;" routerLinkActive="active" class="list-group-item clearfix"
+    *ngFor="let worker of getWorkers() | filter: filterInformation" [routerLink]="[worker.id]">
+    {{worker.firstName}} {{worker.lastName}}
+    <span class="badge">Çalışan</span>
+    <span class="badge" style="background-color: cadetblue;"> id: {{worker.id}}</span>
+  </a>
+</div>

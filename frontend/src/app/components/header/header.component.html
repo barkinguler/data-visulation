@@ -1,0 +1,57 @@
+<nav class="navbar navbar-dark bg-primary" style="background-color: #eef4f8;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+
+      <ul *ngIf="this.authservice.getIsLogin()" class="nav nav-pills">
+        <li><a class="navbar-brand" routerLink="/main" style="cursor: pointer;">Anasayfa</a></li>
+
+        <li *ngIf="this.authservice.getUserRole() === 'hr'" class="nav-item dropdown nav nav-pills">
+          <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+            role="button">Kurum Çalışanları İşlemleri</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item " href="#" routerLink="/createWorker" style="cursor: pointer;">Çalışan Ekle</a>
+            <br>
+            <a class="dropdown-item " href="#" routerLink="/updateWorker" style="cursor: pointer;">Çalışan
+              Bilgilerini Güncelle</a>
+          </div>
+        </li>
+        <li *ngIf="this.authservice.getUserRole() === 'hr'" class="nav-item dropdown nav nav-pills">
+          <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+            role="button">Koruyucu Ekipman İşlemleri</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item " href="#" routerLink="/createEquipment" style="cursor: pointer;">Ekipman
+              Ekle</a> <br>
+            <a class="dropdown-item " href="#" routerLink="/updateEquipment" style="cursor: pointer;">Ekipman
+              Bilgilerini Güncelle</a>
+          </div>
+        </li>
+
+        <li *ngIf="this.authservice.getUserRole() === 'hr'" class="nav-item dropdown nav nav-pills" hr>
+          <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+            role="button">Kurum Makine İşlemleri</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item " href="#" routerLink="/createMachine" style="cursor: pointer;">Makine Ekle</a>
+            <br>
+            <a class="dropdown-item " href="#" routerLink="/updateMachine" style="cursor: pointer;">Makine
+              Bilgilerini Güncelle</a>
+          </div>
+        </li>
+
+
+      </ul>
+    </div>
+
+
+    <ul *ngIf="this.authservice.getIsLogin()" class="nav navbar-nav navbar-right">
+      <li>
+        <app-stroke-predict></app-stroke-predict>
+      </li>
+      <li>
+        <app-favorites></app-favorites>
+      </li>
+      <li>
+        <a style="cursor: pointer;" (click)="exit()">ÇIKIŞ</a>
+      </li>
+    </ul>
+  </div>
+</nav>

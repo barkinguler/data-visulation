@@ -1,0 +1,74 @@
+<ul class="nav navbar-nav navbar-right">
+  <li *ngIf="this.authservice.getIsLogin()">
+    <a style="cursor: pointer;" (click)="open()">Sık Kullanılanlar</a>
+  </li>
+
+</ul>
+
+<div #modal class="modal " id="largeShoes" tabindex="-1" role="dialog" aria-labelledby="modalLabelLarge"
+  aria-hidden="true">
+  <div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" (click)="close()" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <div *ngIf="getGraphics().length==0" class="alert alert-danger">
+          <p>Kayıt Bulunmamakta!</p>
+        </div>
+        <h2 class="modal-title" id="modalLabelLarge" style="color: black">Sık Kullanılanlar</h2>
+
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let graphic of getGraphics()">
+          <div *ngIf="graphic.type=='status'" class="chart-custom" style="margin-top: 20px;">
+            <button type="button" (click)="deleteGraphic(graphic)" class="close" data-dismiss="modal"
+              aria-label="Close">
+              <span aria-hidden="true" style="color: red;">&times;</span>
+            </button>
+            <p style="color: black;"> {{graphic.id}} Numaralı Çalışanın Sağlık Grafiği</p>
+            <canvas baseChart [datasets]="graphic.data" [labels]="graphic.label" chartType="line"></canvas>
+          </div>
+
+          <div *ngIf="graphic.type=='machine'" class="chart-custom" style="margin-top: 20px;">
+            <button type="button" (click)="deleteGraphic(graphic)" class="close" data-dismiss="modal"
+              aria-label="Close">
+              <span aria-hidden="true" style="color: red;">&times;</span>
+            </button>
+            <p style="color: black;"> {{graphic.id}} Numaralı Çalışanın Makinelerinin Durum Grafiği <span
+                *ngIf="graphic.machineId">:{{graphic.machineId}} Numaralı Makine</span></p>
+            <canvas baseChart [datasets]="graphic.data" [labels]="graphic.label" chartType="bar"></canvas>
+
+          </div>
+
+          <div *ngIf="graphic.type=='equipment'" class="chart-custom" style="margin-top: 20px;">
+            <button type="button" (click)="deleteGraphic(graphic)" class="close" data-dismiss="modal"
+              aria-label="Close">
+              <span aria-hidden="true" style="color: #ff0000;">&times;</span>
+            </button>
+            <p style="margin-top: 10px;color: black;">{{graphic.id}} Numaralı Çalışanın Ekipman Grafiği <span
+                *ngIf="graphic.equipmentId">:{{graphic.equipmentId}} Numaralı Ekipman</span></p>
+            <canvas baseChart [datasets]="graphic.data" [labels]="graphic.label" chartType="bar"
+              [options]="graphic.chartOption"></canvas>
+          </div>
+
+          <div *ngIf="graphic.type=='custom'" class="chart-custom" style="margin-top: 20px;">
+            <button type="button" (click)="deleteGraphic(graphic)" class="close" data-dismiss="modal"
+              aria-label="Close">
+              <span aria-hidden="true" style="color: red;">&times;</span>
+            </button>
+            <p style="color: black;"> {{graphic.id}} Numaralı Çalışanın Özelleştirilmiş Grafiği </p>
+            <canvas baseChart [datasets]="graphic.data" [labels]="graphic.label" chartType="bar"></canvas>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

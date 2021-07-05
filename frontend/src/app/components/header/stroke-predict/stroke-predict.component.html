@@ -1,0 +1,130 @@
+<ul class="nav navbar-nav navbar-right">
+    <li *ngIf="this.authservice.getIsLogin()">
+        <a style="cursor: pointer;" (click)="open()">İnme Tahmini</a>
+    </li>
+
+</ul>
+
+<div #modalPredict class="modal " id="largeShoes" tabindex="-1" role="dialog" aria-labelledby="modalLabelLarge"
+    aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" (click)="close()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+
+                <h2 class="modal-title" id="modalLabelLarge" style="color: black">İnme Tahmini</h2>
+
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+                    <div class="row">
+                        <div class="col-sm-5 form-group">
+                            <label for="id" style="color: black;">Çalışanın ID Numarası</label>
+                            <input id="id" class="form-control" name="id" ngModel required pattern="^[1-9]+[0-9]*$">
+                            <label for="age" style="color: black;">Çalışanın Yaşı</label>
+                            <input id="age" class="form-control" name="age" ngModel required pattern="^[1-9]+[0-9]*$">
+                            <label for="gender" style="color: black;">Cinsiyet</label>
+                            <select class="form-control" id="gender" name="gender" ngModel required>
+                                <option>Erkek</option>
+                                <option>Kadın</option>
+                                <option>Diğer</option>
+                            </select>
+                            <label for="Hypertension" style="color: black;">Hiper Tansiyon Hastalığı var mı?</label>
+                            <select class="form-control" id="Hypertension" name="Hypertension" ngModel required>
+                                <option>Evet</option>
+                                <option>Hayır</option>
+                            </select>
+                            <label for="hearth" style="color: black;">Çalışanın Kalp Hastalığı Var mı?</label>
+
+                            <select class="form-control" id="hearth" name="hearth" ngModel required>
+                                <option>Evet</option>
+                                <option>Hayır</option>
+                            </select>
+                            <label for="married" style="color: black;">Çalışan Hiç Evlendi mi?</label>
+
+                            <select class="form-control" id="married" name="married" ngModel required>
+                                <option>Evet</option>
+                                <option>Hayır</option>
+                            </select>
+                            <label for="worktype" style="color: black;">Çalışma Tipi</label>
+
+                            <select class="form-control" id="worktype" name="worktype" ngModel required>
+                                <option>Özel</option>
+                                <option>Memur</option>
+                                <option>Serbest Meslek</option>
+                                <option>Stajyer(Çocuk,genç)</option>
+                                <option>Hiç Çalışmadı</option>
+                            </select>
+
+                            <label for="residence" style="color: black;">Çalışanın Yaşadığı Ev Tipi</label>
+
+                            <select class="form-control" id="residence" name="residence" ngModel required>
+                                <option>Şehir Konutu</option>
+                                <option>Kırsal Ev</option>
+                            </select>
+
+                            <label for="avgglucose" style="color: black;">Çalışanın Ortalama Glikoz Seviyesi</label>
+                            <input id="avgglucose" class="form-control" name="avgglucose" ngModel required
+                                pattern="^[0-9]+([\.,][0-9]{1,3})*$">
+
+                            <label for="bmi" style="color: black;">Çalışanın Vücut Kitle Endeksi</label>
+                            <input id="bmi" class="form-control" name="bmi" ngModel required
+                                pattern="^[0-9]+([\.,][0-9]{1,3})*$">
+
+                            <label for="smoking" style="color: black;">Sigara Kullanımı</label>
+
+                            <select class="form-control" id="smoking" name="smoking" ngModel required>
+                                <option>Hiç kullanmadı</option>
+                                <option>Kullanıyor</option>
+                                <option>Bilinmiyor</option>
+                                <option>Önceden Kullandı</option>
+                            </select>
+                            <label for="stroke" style="color: black;">Daha Önce İnme Geçirdi mi?</label>
+
+                            <select class="form-control" id="stroke" name="stroke" ngModel required>
+                                <option>Evet</option>
+                                <option>Hayır</option>
+                            </select>
+                            <div class="text-center" style="margin-top: 5%;">
+                                <button class="btn btn-success" type="submit" [disabled]="!f.valid">Kaydet</button>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+
+                            <img src="https://images.medicinenet.com/images/article/main_image/stroke-symptoms-and-treatment.jpg"
+                                class="img-fluid">
+
+
+
+
+
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <h1 style="color: green;margin-top: 50%;margin-left: 30%;">Tahmin Sonucu:
+                                <div *ngIf="loading;else other_content" style="color: black">
+                                    Hesaplanıyor..
+                                </div>
+                                <ng-template #other_content >
+                                  <div style="color: black">  {{predict}}</div>
+                                </ng-template>
+                            </h1>
+                            
+                            
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>

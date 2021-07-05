@@ -1,0 +1,51 @@
+<div>
+  <app-message></app-message>
+</div>
+<form #form ngNativeValidate>
+  <div class="form-group">
+    <label for="exampleInputEmail1">MAKİNE ADI</label>
+    <input [(ngModel)]="newMachine.name" class="form-control" id="machineName" minlength=3 name="machineName" required
+           placeholder="Makinenin Adını Giriniz" type="text">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">MAKİNENİN GÖREVİ</label>
+    <input [(ngModel)]="newMachine.job" class="form-control" id="machineJob" minlength=3 name="machineJob" required
+           placeholder="Makinenin Görevini Giriniz" type="text">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1" required>Makineye Ne Zaman Bakım Yapılacağını Giriniz</label>
+    <input [(ngModel)]="newMachine.newMaintenanceDate" class="form-control" id="machineFixDate" name='machineFixDate'
+           required
+           placeholder="Ekipmana Ne Zaman Bakım Yapılacağını Giriniz" type="date">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Makineye Yapılan Son Bakım Tarihini Giriniz</label>
+    <input [(ngModel)]="newMachine.oldMaintenanceDate" class="form-control" id="machineLastFixDate" required
+           name="machineLastFixDate" placeholder="Makineye Yapılan Son Bakım Tarihini Giriniz" type="date">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Makine Kullanım Yetki Derecesi</label>
+    <select [(ngModel)]="newMachine.authorityLevel" class="form-control" name="authority" required>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="workPlaceId">Makinenin İşyeri Numarası</label>
+    <select [(ngModel)]='newMachine.workplaceId'  class="form-control" name="workPlaceId" required>
+     
+       <option *ngFor="let workPlace of this.workPlaces">
+         {{workPlace.id}}
+       </option>
+     
+    </select>
+  </div>
+
+
+  <button (click)=" form.checkValidity() ? createMachine() : null" class="btn btn-primary">Kayıt Et</button>
+</form>

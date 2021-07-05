@@ -1,0 +1,62 @@
+<div>
+  <app-message></app-message>
+</div>
+
+<div>
+  <mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel *ngFor='let equipment of equipments'>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <strong> Sicil No:</strong> {{equipment.id}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{equipment.name}} -> {{equipment.job}}
+          <mat-icon>build</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <form>
+        <mat-form-field>
+          <mat-label>Ekipman Ismi</mat-label>
+          <input [(ngModel)]="equipment.name" id="name" matInput name="name" type="text" value="{{equipment.name}}">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Ekipmanın'nin İşi</mat-label>
+          <input [(ngModel)]="equipment.job" id="job" matInput name="job" type="text" value="{{equipment.job}}">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Ekipmanın Gelecek Bakım Tarihi</mat-label>
+          <input [(ngModel)]="equipment.newMaintenanceDate" id="newMaintenance" matInput name="newMaintenance"
+                 type="text" value="{{equipment.newMaintenanceDate}}">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Ekipmanın Son Bakım Tarihi</mat-label>
+          <input [(ngModel)]="equipment.oldMaintenanceDate" id="oldMaintenance" matInput name="oldMaintenance"
+                 type="text" value="{{equipment.oldMaintenanceDate}}">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Yetki Seviyesi</mat-label>
+          <input id="authorityLevel" matInput max="7" min="1" name="authorityLevel" type="number"
+                 [(ngModel)]="equipment.authorityLevel" value="{{equipment.authorityLevel}}">
+        </mat-form-field>
+
+      </form>
+      <mat-action-row>
+        <button (click)="updateEquipmentById(equipment)" enctype='multipart/form-data' mat-button
+                style="background-color: green;">Ekipman Bilgilerini Güncelle
+        </button>
+        <button (click)="deleteEquipmentById(equipment.id)" mat-button style="background-color: red;">Ekipmanı
+          Kullanımdan Kaldır
+        </button>
+
+      </mat-action-row>
+
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</div>

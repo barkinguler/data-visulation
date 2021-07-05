@@ -1,0 +1,12 @@
+.modal {
+    overflow-y:auto;
+  }
+  .myChartWrapper{
+    
+    overflow-x: scroll;
+  }
+  .backdrop {
+    
+    background: rgba(0, 0, 0, 0.75);
+    
+  }

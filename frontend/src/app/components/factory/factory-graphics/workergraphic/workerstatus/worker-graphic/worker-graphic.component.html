@@ -1,0 +1,7 @@
+<button type="button" class="btn btn-default pull-right" (click)="addFavority()">
+    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>Sık Kullanılanlara Ekle
+</button>
+<div class="chart-custom" style="margin-top: 20px;">
+    <p>Çalışanın Sağlık Grafiği</p>
+    <canvas baseChart [datasets]="workerStatusData" [labels]="workerLabel" chartType="line"></canvas>
+</div>
