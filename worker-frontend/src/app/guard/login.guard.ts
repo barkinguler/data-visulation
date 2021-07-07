@@ -1,10 +1,11 @@
-import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
-import { Injectable } from '@angular/core';
-import { AuthService } from '../Services/auth.service';
+import {ActivatedRouteSnapshot, CanActivate, Router} from '@angular/router';
+import {Injectable} from '@angular/core';
+import {AuthService} from '../Services/auth.service';
 
 @Injectable()
 export class LoginGuard implements CanActivate {
-  constructor(private authservice: AuthService, private router: Router) {}
+  constructor(private authservice: AuthService, private router: Router) {
+  }
 
   expectedRoles = [];
   userRoles;

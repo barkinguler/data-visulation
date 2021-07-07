@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Iworker } from 'src/app/Imodel/Iworker';
-import { FactoriesService } from 'src/app/Services/factories.service';
-import { WorkersService } from 'src/app/Services/workers.service';
+import {Component, OnInit} from '@angular/core';
+import {Iworker} from 'src/app/Imodel/Iworker';
+import {FactoriesService} from 'src/app/Services/factories.service';
+import {WorkersService} from 'src/app/Services/workers.service';
 
 @Component({
   selector: 'app-items',
@@ -12,7 +12,9 @@ export class ItemsComponent implements OnInit {
   filterInformation: any;
 
   workers: Iworker[] = [];
-  constructor(private factoriesService: FactoriesService, private workerService: WorkersService) { }
+
+  constructor(private factoriesService: FactoriesService, private workerService: WorkersService) {
+  }
 
   async ngOnInit() {
     await this.workerService.getWorkersforFactory(this.factoriesService.getSelectedFactoryId()).then(res => {
@@ -21,7 +23,7 @@ export class ItemsComponent implements OnInit {
       });
     });
   }
-  
+
   getWorkers(): Array<Iworker> {
 
     return this.workers;

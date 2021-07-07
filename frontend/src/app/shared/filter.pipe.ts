@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { Iworker } from '../Imodel/Iworker';
+import {Pipe, PipeTransform} from '@angular/core';
+import {Iworker} from '../Imodel/Iworker';
 
 @Pipe({
   name: 'filter',

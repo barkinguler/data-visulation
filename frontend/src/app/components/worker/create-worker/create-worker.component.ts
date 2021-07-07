@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { Iworkplace } from 'src/app/Imodel/Iworkplace';
-import { FactoriesService } from 'src/app/Services/factories.service';
-import { WorkersService } from 'src/app/Services/workers.service';
+import {Iworkplace} from 'src/app/Imodel/Iworkplace';
+import {FactoriesService} from 'src/app/Services/factories.service';
+import {WorkersService} from 'src/app/Services/workers.service';
 
 @Component({
   selector: 'app-create-worker',
@@ -30,7 +30,8 @@ export class CreateWorkerComponent implements OnInit {
   constructor(
     public workerService: WorkersService,
     public factoriesService: FactoriesService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.factoriesService.getworkPlaces().then((res) => {

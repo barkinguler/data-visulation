@@ -1,9 +1,9 @@
-import { ElementRef, ViewChild } from '@angular/core';
-import { Input } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
-import { Ifavories } from 'src/app/Imodel/Ifavories';
-import { AuthService } from 'src/app/Services/auth.service';
-import { ModalService } from 'src/app/Services/modal.service';
+import {ElementRef, ViewChild} from '@angular/core';
+import {Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Ifavories} from 'src/app/Imodel/Ifavories';
+import {AuthService} from 'src/app/Services/auth.service';
+import {ModalService} from 'src/app/Services/modal.service';
 
 @Component({
   selector: 'app-favorites',
@@ -14,6 +14,7 @@ export class FavoritesComponent implements OnInit {
   @ViewChild('modal') elementRef: ElementRef
 
   graphics: Ifavories[] = [];
+
   constructor(public authservice: AuthService, private modalService: ModalService) {
 
   }
@@ -30,6 +31,7 @@ export class FavoritesComponent implements OnInit {
       }
     )
   }
+
   open() {
 
 
@@ -39,6 +41,7 @@ export class FavoritesComponent implements OnInit {
   close() {
     this.modalService.close();
   }
+
   getGraphics() {
     return this.graphics;
   }

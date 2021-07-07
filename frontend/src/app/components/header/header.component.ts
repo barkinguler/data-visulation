@@ -1,10 +1,10 @@
-import { ViewChild } from '@angular/core';
-import { Input } from '@angular/core';
-import { ElementRef } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/Services/auth.service';
-import { ModalService } from 'src/app/Services/modal.service';
+import {ViewChild} from '@angular/core';
+import {Input} from '@angular/core';
+import {ElementRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthService} from 'src/app/Services/auth.service';
+import {ModalService} from 'src/app/Services/modal.service';
 
 @Component({
   selector: 'app-header',
@@ -18,8 +18,11 @@ export class HeaderComponent implements OnInit {
     public authservice: AuthService,
     private router: Router,
     private modalService: ModalService
-  ) {}
-  ngOnInit(): void {}
+  ) {
+  }
+
+  ngOnInit(): void {
+  }
 
   exit() {
     localStorage.removeItem('token');

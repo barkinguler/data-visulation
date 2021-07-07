@@ -1,9 +1,9 @@
-import { ViewChild } from '@angular/core';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { EquipmentService } from 'src/app/Services/equipment.service';
-import { EquipmentGraphicComponent } from './equipment-graphic/equipment-graphic.component';
+import {ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {EquipmentService} from 'src/app/Services/equipment.service';
+import {EquipmentGraphicComponent} from './equipment-graphic/equipment-graphic.component';
 
 @Component({
   selector: 'app-equipment',
@@ -12,9 +12,12 @@ import { EquipmentGraphicComponent } from './equipment-graphic/equipment-graphic
 })
 export class EquipmentComponent implements OnInit, OnDestroy {
 
-  constructor(private route: ActivatedRoute, private EquipmentService: EquipmentService) { }
+  constructor(private route: ActivatedRoute, private EquipmentService: EquipmentService) {
+  }
+
   @ViewChild(EquipmentGraphicComponent) child: EquipmentGraphicComponent;
   subscription: Subscription;
+
   ngOnInit(): void {
     this.route.params
       .subscribe(
@@ -31,9 +34,11 @@ export class EquipmentComponent implements OnInit, OnDestroy {
         }
       );
   }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
   addFavority() {
     this.child.addGraphic();
   }

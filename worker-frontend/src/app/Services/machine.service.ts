@@ -1,10 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { ILogs } from '../Imodel/Ilogs';
-import { AuthService } from './auth.service';
-import { MessageService } from './message.service';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable, Subject} from 'rxjs';
+import {tap} from 'rxjs/operators';
+import {ILogs} from '../Imodel/Ilogs';
+import {AuthService} from './auth.service';
+import {MessageService} from './message.service';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +24,8 @@ export class MachineService {
     private http: HttpClient,
     private authService: AuthService,
     private messageService: MessageService
-  ) {}
+  ) {
+  }
 
   findMachinesbyWorkerId(id: number): Observable<any> {
     document.body.style.cursor = 'wait';
@@ -37,7 +38,7 @@ export class MachineService {
           const postArray = [];
           for (const key in responseData) {
             if (responseData.hasOwnProperty(key)) {
-              postArray.push({ ...responseData[key] });
+              postArray.push({...responseData[key]});
             }
           }
           this.logs.next(postArray);
@@ -62,7 +63,7 @@ export class MachineService {
           const postArray = [];
           for (const key in responseData) {
             if (responseData.hasOwnProperty(key)) {
-              postArray.push({ ...responseData[key] });
+              postArray.push({...responseData[key]});
             }
           }
 
@@ -74,19 +75,19 @@ export class MachineService {
   registerMachine(workerId: number, machineId: number): Observable<any> {
     return this.http.put(
       this.machineApiBaseUrl +
-        'updateWorkerIdByMachineId/' +
-        machineId +
-        '/' +
-        workerId,
+      'updateWorkerIdByMachineId/' +
+      machineId +
+      '/' +
+      workerId,
       null,
-      { headers: this.header }
+      {headers: this.header}
     );
   }
 
   unregisterMachine(workerId: number): Observable<any> {
     return this.http.delete(
       this.machineApiBaseUrl + 'deleteWorkerIdByMachineId/' + workerId,
-      { headers: this.header }
+      {headers: this.header}
     );
   }
 }

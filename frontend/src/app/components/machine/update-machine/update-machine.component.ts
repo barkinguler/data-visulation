@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MachineService } from 'src/app/Services/machine.service';
+import {Component, OnInit} from '@angular/core';
+import {MachineService} from 'src/app/Services/machine.service';
 
 @Component({
   selector: 'app-update-machine',
@@ -10,7 +10,8 @@ export class UpdateMachineComponent implements OnInit {
   machines;
   employerWorkplaceId: number = 1;
 
-  constructor(private machineService: MachineService) {}
+  constructor(private machineService: MachineService) {
+  }
 
   ngOnInit(): void {
     this.machineService

@@ -1,11 +1,12 @@
-import { ViewChild } from '@angular/core';
-import { ElementRef } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
-import { Ifavories } from 'src/app/Imodel/Ifavories';
-import { IgraphicInformations } from 'src/app/Imodel/IgraphicInformations';
-import { ModalService } from 'src/app/Services/modal.service';
-import { NewgraphicService } from 'src/app/Services/newgraphic.service';
+import {ViewChild} from '@angular/core';
+import {ElementRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Ifavories} from 'src/app/Imodel/Ifavories';
+import {IgraphicInformations} from 'src/app/Imodel/IgraphicInformations';
+import {ModalService} from 'src/app/Services/modal.service';
+import {NewgraphicService} from 'src/app/Services/newgraphic.service';
 import * as _ from "lodash";
+
 @Component({
   selector: 'app-modal-graphic',
   templateUrl: './modal-graphic.component.html',
@@ -14,7 +15,10 @@ import * as _ from "lodash";
 })
 export class ModalGraphicComponent implements OnInit {
   @ViewChild('modal') elementRef: ElementRef
-  constructor(private modalService: ModalService, private newgraphicService: NewgraphicService) { }
+
+  constructor(private modalService: ModalService, private newgraphicService: NewgraphicService) {
+  }
+
   equipment: Ifavories;
   machines: Ifavories;
   workerStatus: Ifavories;
@@ -26,6 +30,7 @@ export class ModalGraphicComponent implements OnInit {
   newGraphicLabel: string[] = [];
 
   selectedGraphicInformation: IgraphicInformations;
+
   ngOnInit(): void {
     this.newgraphicService.equipments.subscribe(
       value => {
@@ -52,6 +57,7 @@ export class ModalGraphicComponent implements OnInit {
 
     this.modalService.setup(this.elementRef);
   }
+
   open() {
 
     this.modalService.open();
@@ -74,15 +80,18 @@ export class ModalGraphicComponent implements OnInit {
     return this.graphicOptions.filter(item => !item.isSelected);
 
   }
+
   selectedInformation(option: IgraphicInformations) {
     this.graphicTypes = option.type;
     this.selectedGraphicInformation = option;
 
   }
+
   selectedType(type: string) {
     this.selectedGraphicInformation.selectedType = type;
     this.conditionType = true;
   }
+
   addOption() {
     this.selectedGraphicInformation.isSelected = true;
     this.graphicTypes = [];
@@ -90,10 +99,17 @@ export class ModalGraphicComponent implements OnInit {
     this.createGraphic();
     this.condition = true;
   }
+
   save() {
-    let graphic: Ifavories = { data: this.newGraphicData, label: this.newGraphicLabel, type: 'custom', id: this.equipment.id };
+    let graphic: Ifavories = {
+      data: this.newGraphicData,
+      label: this.newGraphicLabel,
+      type: 'custom',
+      id: this.equipment.id
+    };
     this.newgraphicService.save(graphic);
   }
+
   reset() {
 
     this.newGraphicData = [];
@@ -104,6 +120,7 @@ export class ModalGraphicComponent implements OnInit {
     this.condition = false;
     this.conditionType = false;
   }
+
   createGraphic() {
     if (this.newGraphicLabel.length == 0)
       this.firstCreateGraphic();
@@ -147,15 +164,19 @@ export class ModalGraphicComponent implements OnInit {
 
         }
 
-        tmpDataset.push({ fill: false, data: tmpData, label: this.selectedGraphicInformation.dataName, type: this.selectedGraphicInformation.selectedType });
+        tmpDataset.push({
+          fill: false,
+          data: tmpData,
+          label: this.selectedGraphicInformation.dataName,
+          type: this.selectedGraphicInformation.selectedType
+        });
         this.newGraphicData = tmpDataset;
 
 
         this.newGraphicLabel = tmpLabel;
 
       }
-    }
-    else if (this.selectedGraphicInformation.dataName === 'Ekipman Yükseklik') {
+    } else if (this.selectedGraphicInformation.dataName === 'Ekipman Yükseklik') {
       let tmpLabel: string[] = [];
       let tmpData = [];
       let tmpOldData = [];
@@ -192,13 +213,17 @@ export class ModalGraphicComponent implements OnInit {
 
         }
 
-        tmpDataset.push({ fill: false, data: tmpData, label: this.selectedGraphicInformation.dataName, type: this.selectedGraphicInformation.selectedType });
+        tmpDataset.push({
+          fill: false,
+          data: tmpData,
+          label: this.selectedGraphicInformation.dataName,
+          type: this.selectedGraphicInformation.selectedType
+        });
         this.newGraphicData = tmpDataset;
         this.newGraphicLabel = tmpLabel;
       }
 
-    }
-    else if (this.selectedGraphicInformation.dataName === 'Ekipman Yakınlık') {
+    } else if (this.selectedGraphicInformation.dataName === 'Ekipman Yakınlık') {
       let tmpLabel: string[] = [];
       let tmpData = [];
       let tmpOldData = [];
@@ -233,13 +258,17 @@ export class ModalGraphicComponent implements OnInit {
           tmpDataset[i].data = tmp;
 
         }
-        tmpDataset.push({ fill: false, data: tmpData, label: this.selectedGraphicInformation.dataName, type: this.selectedGraphicInformation.selectedType });
+        tmpDataset.push({
+          fill: false,
+          data: tmpData,
+          label: this.selectedGraphicInformation.dataName,
+          type: this.selectedGraphicInformation.selectedType
+        });
         this.newGraphicData = tmpDataset;
         this.newGraphicLabel = tmpLabel;
       }
 
-    }
-    else if (this.selectedGraphicInformation.dataName === 'Gözlük Takılma Bilgisi') {
+    } else if (this.selectedGraphicInformation.dataName === 'Gözlük Takılma Bilgisi') {
       let tmpLabel: string[] = [];
       let tmpDataActive = [];
       let tmpDataInactive = [];
@@ -264,8 +293,20 @@ export class ModalGraphicComponent implements OnInit {
         console.log(tmpDataInactive);
 
         let tmpDataset = [];
-        tmpDataset.push({ data: tmpDataActive, label: 'Gözlük Takıldı', type: this.selectedGraphicInformation.selectedType, pointRadius: 10, backgroundColor: 'green' });
-        tmpDataset.push({ data: tmpDataInactive, label: 'Gözlük Takılmadı', type: this.selectedGraphicInformation.selectedType, pointRadius: 10, backgroundColor: 'red' });
+        tmpDataset.push({
+          data: tmpDataActive,
+          label: 'Gözlük Takıldı',
+          type: this.selectedGraphicInformation.selectedType,
+          pointRadius: 10,
+          backgroundColor: 'green'
+        });
+        tmpDataset.push({
+          data: tmpDataInactive,
+          label: 'Gözlük Takılmadı',
+          type: this.selectedGraphicInformation.selectedType,
+          pointRadius: 10,
+          backgroundColor: 'red'
+        });
         for (let i = 0; i < this.newGraphicData.length; i++) {
           tmpDataset.push(this.newGraphicData[i]);
           let tmp = [];
@@ -285,12 +326,10 @@ export class ModalGraphicComponent implements OnInit {
         this.newGraphicData = tmpDataset;
 
 
-
       }
 
 
-    }
-    else if (this.selectedGraphicInformation.dataName === 'Makine Sıcaklık') {
+    } else if (this.selectedGraphicInformation.dataName === 'Makine Sıcaklık') {
       let tmpLabel: string[] = [];
       let tmpData = [];
       let tmpOldData = [];
@@ -326,12 +365,16 @@ export class ModalGraphicComponent implements OnInit {
           tmpDataset[i].data = tmp;
 
         }
-        tmpDataset.push({ fill: false, data: tmpData, label: this.selectedGraphicInformation.dataName, type: this.selectedGraphicInformation.selectedType });
+        tmpDataset.push({
+          fill: false,
+          data: tmpData,
+          label: this.selectedGraphicInformation.dataName,
+          type: this.selectedGraphicInformation.selectedType
+        });
         this.newGraphicData = tmpDataset;
         this.newGraphicLabel = tmpLabel;
       }
-    }
-    else if (this.selectedGraphicInformation.dataName === 'Kan Şekeri') {
+    } else if (this.selectedGraphicInformation.dataName === 'Kan Şekeri') {
       let tmpLabel: string[] = [];
       let tmpData = [];
       let tmpOldData = [];
@@ -369,14 +412,18 @@ export class ModalGraphicComponent implements OnInit {
         }
 
 
-        tmpDataset.push({ fill: false, data: tmpData, label: this.selectedGraphicInformation.dataName, type: this.selectedGraphicInformation.selectedType });
+        tmpDataset.push({
+          fill: false,
+          data: tmpData,
+          label: this.selectedGraphicInformation.dataName,
+          type: this.selectedGraphicInformation.selectedType
+        });
         this.newGraphicLabel = tmpLabel;
         this.newGraphicData = tmpDataset;
 
       }
 
-    }
-    else if (this.selectedGraphicInformation.dataName === 'Tansiyon') {
+    } else if (this.selectedGraphicInformation.dataName === 'Tansiyon') {
       let tmpLabel: string[] = [];
       let tmpData = [];
       let tmpOldData = [];
@@ -411,12 +458,18 @@ export class ModalGraphicComponent implements OnInit {
           tmpDataset[i].data = tmp;
 
         }
-        tmpDataset.push({ fill: false, data: tmpData, label: this.selectedGraphicInformation.dataName, type: this.selectedGraphicInformation.selectedType });
+        tmpDataset.push({
+          fill: false,
+          data: tmpData,
+          label: this.selectedGraphicInformation.dataName,
+          type: this.selectedGraphicInformation.selectedType
+        });
         this.newGraphicLabel = tmpLabel;
         this.newGraphicData = tmpDataset;
       }
     }
   }
+
   firstCreateGraphic() {
     if (this.selectedGraphicInformation.dataName === 'Ekipman Sıcaklık') {
       let tmpEquipment: Ifavories = _.cloneDeep(this.equipment);
@@ -427,8 +480,7 @@ export class ModalGraphicComponent implements OnInit {
 
       this.newGraphicLabel = tmpEquipment.label;
 
-    }
-    else if (this.selectedGraphicInformation.dataName === 'Ekipman Yükseklik') {
+    } else if (this.selectedGraphicInformation.dataName === 'Ekipman Yükseklik') {
       let tmpEquipment: Ifavories = _.cloneDeep(this.equipment);
       tmpEquipment.data[3].type = this.selectedGraphicInformation.selectedType;
       tmpEquipment.data[3].label = this.selectedGraphicInformation.dataName;
@@ -436,8 +488,7 @@ export class ModalGraphicComponent implements OnInit {
 
       this.newGraphicLabel = tmpEquipment.label;
 
-    }
-    else if (this.selectedGraphicInformation.dataName === 'Ekipman Yakınlık') {
+    } else if (this.selectedGraphicInformation.dataName === 'Ekipman Yakınlık') {
       let tmpEquipment: Ifavories = _.cloneDeep(this.equipment);
       tmpEquipment.data[4].type = this.selectedGraphicInformation.selectedType;
       tmpEquipment.data[4].label = this.selectedGraphicInformation.dataName;
@@ -445,8 +496,7 @@ export class ModalGraphicComponent implements OnInit {
 
       this.newGraphicLabel = tmpEquipment.label;
 
-    }
-    else if (this.selectedGraphicInformation.dataName === 'Gözlük Takılma Bilgisi') {
+    } else if (this.selectedGraphicInformation.dataName === 'Gözlük Takılma Bilgisi') {
       let tmpEquipment: Ifavories = _.cloneDeep(this.equipment);
 
       this.newGraphicData.push(tmpEquipment.data[0]);
@@ -454,8 +504,7 @@ export class ModalGraphicComponent implements OnInit {
 
       this.newGraphicLabel = tmpEquipment.label;
 
-    }
-    else if (this.selectedGraphicInformation.dataName === 'Kan Şekeri') {
+    } else if (this.selectedGraphicInformation.dataName === 'Kan Şekeri') {
       let tmpStatus: Ifavories = _.cloneDeep(this.workerStatus);
       tmpStatus.data[0].type = this.selectedGraphicInformation.selectedType;
       tmpStatus.data[0].label = this.selectedGraphicInformation.dataName;
@@ -464,8 +513,7 @@ export class ModalGraphicComponent implements OnInit {
 
       this.newGraphicLabel = tmpStatus.label;
 
-    }
-    else if (this.selectedGraphicInformation.dataName === 'Tansiyon') {
+    } else if (this.selectedGraphicInformation.dataName === 'Tansiyon') {
       let tmpStatus: Ifavories = _.cloneDeep(this.workerStatus);
       tmpStatus.data[1].type = this.selectedGraphicInformation.selectedType;
       tmpStatus.data[1].label = this.selectedGraphicInformation.dataName;
@@ -474,8 +522,7 @@ export class ModalGraphicComponent implements OnInit {
 
       this.newGraphicLabel = tmpStatus.label;
 
-    }
-    else if (this.selectedGraphicInformation.dataName === 'Makine Sıcaklık') {
+    } else if (this.selectedGraphicInformation.dataName === 'Makine Sıcaklık') {
       let tmpMachine: Ifavories = _.cloneDeep(this.machines);
       tmpMachine.data[0].type = this.selectedGraphicInformation.selectedType;
       tmpMachine.data[0].label = this.selectedGraphicInformation.dataName;
@@ -486,7 +533,6 @@ export class ModalGraphicComponent implements OnInit {
 
     }
   }
-
 
 
 }

@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthService } from './auth.service';
-import { Observable, Subject } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { MessageService } from './message.service';
-import { ILogs } from '../Imodel/Ilogs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {AuthService} from './auth.service';
+import {Observable, Subject} from 'rxjs';
+import {tap} from 'rxjs/operators';
+import {MessageService} from './message.service';
+import {ILogs} from '../Imodel/Ilogs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,8 @@ export class EquipmentService {
     private authService: AuthService,
     private http: HttpClient,
     private messageService: MessageService
-  ) {}
+  ) {
+  }
 
   private logs = new Subject<ILogs[]>();
   private equipments;
@@ -50,7 +51,7 @@ export class EquipmentService {
           const postArray = [];
           for (const key in responseData) {
             if (responseData.hasOwnProperty(key)) {
-              postArray.push({ ...responseData[key] });
+              postArray.push({...responseData[key]});
             }
           }
           this.logs.next(postArray);
@@ -66,7 +67,7 @@ export class EquipmentService {
     this.equipments = this.http
       .get(
         this.equipmentBaseUrl + 'getAllEquipmentByWorkplaceId/' + workplaceId,
-        { headers: this.header }
+        {headers: this.header}
       )
       .toPromise()
       .catch((header) => {
@@ -82,7 +83,7 @@ export class EquipmentService {
       .put(
         this.equipmentBaseUrl + 'updateEquipmentById/' + equipmentId,
         equipmentInfo,
-        { headers: this.header }
+        {headers: this.header}
       )
       .toPromise()
       .catch((header) => {

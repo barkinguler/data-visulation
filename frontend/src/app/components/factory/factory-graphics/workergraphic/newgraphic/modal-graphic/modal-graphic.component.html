@@ -3,7 +3,7 @@
 </div>
 
 <div #modal class="modal " id="largeShoes" tabindex="-1" role="dialog" aria-labelledby="modalLabelLarge"
-  aria-hidden="true">
+     aria-hidden="true">
   <div class="modal-dialog  modal-lg">
     <div class="modal-content">
 
@@ -24,7 +24,7 @@
 
             <div *ngFor="let option of getGraphicOptions()" class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault"
-                (click)="selectedInformation(option)">
+                     (click)="selectedInformation(option)">
               <label class="form-check-label" for="flexRadioDefault">
                 {{option.dataName}}
               </label>
@@ -34,7 +34,7 @@
             <hr>
             <div *ngFor="let type of graphicTypes" class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1"
-                (click)="selectedType(type)">
+                     (click)="selectedType(type)">
               <label class="form-check-label" for="flexRadioDefault1">
                 {{type}}
               </label>
@@ -59,7 +59,7 @@
                   <h4>Bilgilerinizi istediğiniz grafik türünde gösterin.</h4>
                 </li>
               </ul>
-              <div *ngIf='conditionType' >
+              <div *ngIf='conditionType'>
                 <div *ngIf='selectedGraphicInformation.selectedType=="scatter"'>
                   <h2>Scatter Grafik</h2>
                   <ul>
@@ -67,7 +67,8 @@
                       <h4>Scatter türü ile bilgileri noktasal olarak gösterin.</h4>
                     </li>
                   </ul>
-                  <img src="https://www.w3schools.com/python/img_matplotlib_scatter.png"  class="img-thumbnail" style="width:50%">
+                  <img src="https://www.w3schools.com/python/img_matplotlib_scatter.png" class="img-thumbnail"
+                       style="width:50%">
                 </div>
                 <div *ngIf='selectedGraphicInformation.selectedType=="line"'>
                   <h2>Line Grafik</h2>
@@ -76,7 +77,8 @@
                       <h4>Line türü ile bilgileri çizgisel olarak gösterin.</h4>
                     </li>
                   </ul>
-                  <img src="https://images.edrawmax.com/images/knowledge/line-graph-1-what-is.jpg"  class="img-thumbnail" style="width:40%">
+                  <img src="https://images.edrawmax.com/images/knowledge/line-graph-1-what-is.jpg" class="img-thumbnail"
+                       style="width:40%">
                 </div>
                 <div *ngIf='selectedGraphicInformation.selectedType=="bar"'>
                   <h2>Bar Grafik</h2>
@@ -85,7 +87,8 @@
                       <h4>Bar türü ile bilgileri çubuk şeklinde gösterin.</h4>
                     </li>
                   </ul>
-                  <img src="https://themexpert.b-cdn.net/images/xdocs/quix/elements/bar-chart/barChart3.png"  class="img-thumbnail" style="width:40%">
+                  <img src="https://themexpert.b-cdn.net/images/xdocs/quix/elements/bar-chart/barChart3.png"
+                       class="img-thumbnail" style="width:40%">
                 </div>
               </div>
             </div>
@@ -99,7 +102,7 @@
             </button>
 
             <button *ngIf='condition' type="button" class="btn btn-success pull-right" (click)="save()"
-              style="margin-right: 3%;">
+                    style="margin-right: 3%;">
               Kaydet
             </button>
 

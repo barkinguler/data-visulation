@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/Services/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -17,10 +17,14 @@ export class AuthComponent implements OnInit {
     private router: Router,
     private authservice: AuthService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+  }
 
   isLogin = false;
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+  }
+
   async onSubmit(authForm) {
     await this.authservice.generateToken(this.userSystemInfo);
     if (this.authservice.getToken()) {

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Iworkplace } from 'src/app/Imodel/Iworkplace';
-import { EquipmentService } from 'src/app/Services/equipment.service';
-import { FactoriesService } from 'src/app/Services/factories.service';
-import { MessageService } from 'src/app/Services/message.service';
+import {Component, OnInit} from '@angular/core';
+import {Iworkplace} from 'src/app/Imodel/Iworkplace';
+import {EquipmentService} from 'src/app/Services/equipment.service';
+import {FactoriesService} from 'src/app/Services/factories.service';
+import {MessageService} from 'src/app/Services/message.service';
 
 @Component({
   selector: 'app-create-equipment',
@@ -26,7 +26,8 @@ export class CreateEquipmentComponent implements OnInit {
     private equipmentService: EquipmentService,
     public messageServis: MessageService,
     public factoriesService: FactoriesService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.factoriesService.getworkPlaces().then((res) => {

@@ -1,10 +1,10 @@
-import { formatDate } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { ILogs } from 'src/app/Imodel/Ilogs';
-import { EquipmentService } from 'src/app/Services/equipment.service';
-import { EquipmentTabComponent } from '../equipment-tab/equipment-tab.component';
+import {formatDate} from '@angular/common';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {ILogs} from 'src/app/Imodel/Ilogs';
+import {EquipmentService} from 'src/app/Services/equipment.service';
+import {EquipmentTabComponent} from '../equipment-tab/equipment-tab.component';
 
 @Component({
   selector: 'app-equipment-graphic',
@@ -15,7 +15,9 @@ export class EquipmentGraphicComponent implements OnInit, OnDestroy {
   constructor(
     private equipmentService: EquipmentService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+  }
+
   subscription1: Subscription;
   subscription2: Subscription;
   static IsactiveData: ILogs[] = [];
@@ -51,11 +53,13 @@ export class EquipmentGraphicComponent implements OnInit, OnDestroy {
       }
     );
   }
+
   getMachinesById(id: number) {
     let tmpArray: ILogs[] = [];
     tmpArray = this.equipments.filter((equipment) => equipment.id == id);
     this.equipmentSelectedChart(tmpArray);
   }
+
   equipmentSelectedChart(equipments: Array<ILogs>) {
     const activeData: number[] = [];
     const inactiveData: number[] = [];
@@ -93,9 +97,9 @@ export class EquipmentGraphicComponent implements OnInit, OnDestroy {
         pointRadius: 10,
         backgroundColor: 'red',
       },
-      { data: heatData, label: 'Sıcaklık', type: 'bar' },
-      { data: altitudeData, label: 'Rakım', type: 'bar' },
-      { data: proximityData, label: 'Yakınlık', type: 'bar' },
+      {data: heatData, label: 'Sıcaklık', type: 'bar'},
+      {data: altitudeData, label: 'Rakım', type: 'bar'},
+      {data: proximityData, label: 'Yakınlık', type: 'bar'},
     ];
   }
 
@@ -136,9 +140,9 @@ export class EquipmentGraphicComponent implements OnInit, OnDestroy {
         pointRadius: 10,
         backgroundColor: 'red',
       },
-      { data: heatData, label: 'Sıcaklık', type: 'bar' },
-      { data: altitudeData, label: 'Rakım', type: 'bar' },
-      { data: proximityData, label: 'Yakınlık', type: 'bar' },
+      {data: heatData, label: 'Sıcaklık', type: 'bar'},
+      {data: altitudeData, label: 'Rakım', type: 'bar'},
+      {data: proximityData, label: 'Yakınlık', type: 'bar'},
     ];
   }
 
@@ -159,7 +163,7 @@ export class EquipmentGraphicComponent implements OnInit, OnDestroy {
                 .machineId;
             const is_running: string = EquipmentGraphicComponent.IsactiveData[
               tooltipItem.index
-            ].isRunnig
+              ].isRunnig
               ? 'çalışıyor'
               : 'çalışmıyor';
             result.push('Makine id: ' + machine_id);

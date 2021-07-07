@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Iworkplace } from 'src/app/Imodel/Iworkplace';
-import { FactoriesService } from 'src/app/Services/factories.service';
-import { MachineService } from 'src/app/Services/machine.service';
+import {Component, OnInit} from '@angular/core';
+import {Iworkplace} from 'src/app/Imodel/Iworkplace';
+import {FactoriesService} from 'src/app/Services/factories.service';
+import {MachineService} from 'src/app/Services/machine.service';
 
 @Component({
   selector: 'app-create-machine',
@@ -24,7 +24,8 @@ export class CreateMachineComponent implements OnInit {
   constructor(
     public machineService: MachineService,
     public factoriesService: FactoriesService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.factoriesService.getworkPlaces().then((res) => {

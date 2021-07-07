@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Subject, Subscription } from 'rxjs';
-import { ILogs } from 'src/app/Imodel/Ilogs';
-import { MachineService } from 'src/app/Services/machine.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {Subject, Subscription} from 'rxjs';
+import {ILogs} from 'src/app/Imodel/Ilogs';
+import {MachineService} from 'src/app/Services/machine.service';
 
 @Component({
   selector: 'app-machine',
@@ -15,7 +15,8 @@ export class MachineComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private MachineService: MachineService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.parent.parent.params.subscribe((params: Params) => {

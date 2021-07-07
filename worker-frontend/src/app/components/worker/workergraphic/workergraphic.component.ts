@@ -1,13 +1,13 @@
-import { formatDate } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs';
+import {formatDate} from '@angular/common';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {Subscription} from 'rxjs';
 
-import { Iworkerstatus } from 'src/app/Imodel/Iworkerstatus';
-import { EquipmentService } from 'src/app/Services/equipment.service';
-import { StrokeService } from 'src/app/Services/stroke.service';
+import {Iworkerstatus} from 'src/app/Imodel/Iworkerstatus';
+import {EquipmentService} from 'src/app/Services/equipment.service';
+import {StrokeService} from 'src/app/Services/stroke.service';
 
-import { WorkersService } from 'src/app/Services/workers.service';
+import {WorkersService} from 'src/app/Services/workers.service';
 
 @Component({
   selector: 'app-workergraphic',
@@ -18,9 +18,12 @@ export class WorkergraphicComponent implements OnInit {
   constructor(
     private strokeService: StrokeService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+  }
+
   id;
   predict;
+
   ngOnInit() {
     this.route.parent.params.subscribe((params: Params) => {
       this.id = +params['id'];

@@ -1,13 +1,14 @@
-import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { Ifavories } from 'src/app/Imodel/Ifavories';
-import { Iworkerstatus } from 'src/app/Imodel/Iworkerstatus';
-import { ModalService } from 'src/app/Services/modal.service';
-import { NewgraphicService } from 'src/app/Services/newgraphic.service';
-import { WorkersService } from 'src/app/Services/workers.service';
+import {formatDate} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {Ifavories} from 'src/app/Imodel/Ifavories';
+import {Iworkerstatus} from 'src/app/Imodel/Iworkerstatus';
+import {ModalService} from 'src/app/Services/modal.service';
+import {NewgraphicService} from 'src/app/Services/newgraphic.service';
+import {WorkersService} from 'src/app/Services/workers.service';
 import * as _ from 'lodash';
+
 @Component({
   selector: 'app-worker-graphic',
   templateUrl: './worker-graphic.component.html',
@@ -16,11 +17,11 @@ import * as _ from 'lodash';
 export class WorkerGraphicComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-
     private workerService: WorkersService,
     private modalService: ModalService,
     private newgraphicService: NewgraphicService
-  ) {}
+  ) {
+  }
 
   workerStatus: Iworkerstatus[] = [];
   workerStatusData: any[];
@@ -76,10 +77,11 @@ export class WorkerGraphicComponent implements OnInit {
       blood_pressure_Data.push(status.bloodPressure);
     }
     this.workerStatusData = [
-      { fill: false, data: blood_sugar_Data, label: 'Kan Şekeri' },
-      { fill: false, data: blood_pressure_Data, label: 'Tansiyon' },
+      {fill: false, data: blood_sugar_Data, label: 'Kan Şekeri'},
+      {fill: false, data: blood_pressure_Data, label: 'Tansiyon'},
     ];
   }
+
   addFavority() {
     let graphic: Ifavories = {
       data: this.workerStatusData,

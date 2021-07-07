@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { Ifavories } from '../Imodel/Ifavories';
-import { IgraphicInformations } from '../Imodel/IgraphicInformations';
-import { ILogs } from '../Imodel/Ilogs';
+import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs';
+import {Ifavories} from '../Imodel/Ifavories';
+import {IgraphicInformations} from '../Imodel/IgraphicInformations';
+import {ILogs} from '../Imodel/Ilogs';
 
 @Injectable({
   providedIn: 'root',

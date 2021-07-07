@@ -1,9 +1,9 @@
-import { ViewChild } from '@angular/core';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Subject, Subscription } from 'rxjs';
-import { MachineService } from 'src/app/Services/machine.service';
-import { MachineGraphicComponent } from './machine-graphic/machine-graphic.component';
+import {ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {Subject, Subscription} from 'rxjs';
+import {MachineService} from 'src/app/Services/machine.service';
+import {MachineGraphicComponent} from './machine-graphic/machine-graphic.component';
 
 @Component({
   selector: 'app-machine',
@@ -13,6 +13,7 @@ import { MachineGraphicComponent } from './machine-graphic/machine-graphic.compo
 export class MachineComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   @ViewChild(MachineGraphicComponent) child: MachineGraphicComponent;
+
   constructor(private route: ActivatedRoute, private MachineService: MachineService) {
 
   }

@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Imachine } from '../Imodel/Imachine';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthService } from './auth.service';
-import { Iworkplace } from '../Imodel/Iworkplace';
+import {Injectable} from '@angular/core';
+import {Imachine} from '../Imodel/Imachine';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {AuthService} from './auth.service';
+import {Iworkplace} from '../Imodel/Iworkplace';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,8 @@ export class FactoriesService {
   private selectedFactoryId: number;
   private workPlaces;
 
-  constructor(private authService: AuthService, private http: HttpClient) {}
+  constructor(private authService: AuthService, private http: HttpClient) {
+  }
 
   private workplaceBaseApi = 'http://104.155.99.161:8080/workplaceApi/v1/';
   private header = new HttpHeaders({
@@ -35,6 +36,7 @@ export class FactoriesService {
   setSelectedFactoryId(id: number) {
     this.selectedFactoryId = id;
   }
+
   getSelectedFactoryId() {
     return this.selectedFactoryId;
   }

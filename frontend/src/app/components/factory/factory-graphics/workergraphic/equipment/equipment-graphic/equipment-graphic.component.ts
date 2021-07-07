@@ -1,16 +1,17 @@
-import { formatDate } from '@angular/common';
-import { ViewChild } from '@angular/core';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { Ifavories } from 'src/app/Imodel/Ifavories';
-import { ILogs } from 'src/app/Imodel/Ilogs';
-import { EquipmentService } from 'src/app/Services/equipment.service';
-import { ModalService } from 'src/app/Services/modal.service';
-import { NewgraphicService } from 'src/app/Services/newgraphic.service';
-import { ModalGraphicComponent } from '../../newgraphic/modal-graphic/modal-graphic.component';
-import { EquipmentTabComponent } from '../equipment-tab/equipment-tab.component';
+import {formatDate} from '@angular/common';
+import {ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {Ifavories} from 'src/app/Imodel/Ifavories';
+import {ILogs} from 'src/app/Imodel/Ilogs';
+import {EquipmentService} from 'src/app/Services/equipment.service';
+import {ModalService} from 'src/app/Services/modal.service';
+import {NewgraphicService} from 'src/app/Services/newgraphic.service';
+import {ModalGraphicComponent} from '../../newgraphic/modal-graphic/modal-graphic.component';
+import {EquipmentTabComponent} from '../equipment-tab/equipment-tab.component';
 import * as _ from "lodash";
+
 @Component({
   selector: 'app-equipment-graphic',
   templateUrl: './equipment-graphic.component.html',
@@ -19,7 +20,9 @@ import * as _ from "lodash";
 export class EquipmentGraphicComponent implements OnInit, OnDestroy {
 
   constructor(private equipmentService: EquipmentService, private route: ActivatedRoute, private modalService: ModalService,
-    private NewgraphicService: NewgraphicService) { }
+              private NewgraphicService: NewgraphicService) {
+  }
+
   subscription1: Subscription;
   subscription2: Subscription;
   static IsactiveData: ILogs[] = [];
@@ -49,7 +52,13 @@ export class EquipmentGraphicComponent implements OnInit, OnDestroy {
               this.equipmentsChart();
 
 
-              this.NewgraphicService.equipments.next({ data: _.cloneDeep(this.equipmentData), label: _.cloneDeep(this.equipmentLabel), type: 'equipment', id: this.id, chartOption: this.chartOption });
+              this.NewgraphicService.equipments.next({
+                data: _.cloneDeep(this.equipmentData),
+                label: _.cloneDeep(this.equipmentLabel),
+                type: 'equipment',
+                id: this.id,
+                chartOption: this.chartOption
+              });
 
             }
           );
@@ -63,11 +72,13 @@ export class EquipmentGraphicComponent implements OnInit, OnDestroy {
       }
     );
   }
+
   getMachinesById(id: number) {
     let tmpArray: ILogs[] = []
     tmpArray = this.equipments.filter(equipment => equipment.id == id);
     this.equipmentSelectedChart(tmpArray);
   }
+
   equipmentSelectedChart(equipments: Array<ILogs>) {
 
     const activeData: number[] = [];
@@ -80,25 +91,23 @@ export class EquipmentGraphicComponent implements OnInit, OnDestroy {
       this.equipmentLabel.push(formattedDate);
       heatData.push(equipment.heat);
       altitudeData.push(equipment.altitude);
-      proximityData.push(equipment.proximity);                                    // equipmentsChart() ile aynı kodun tekrarlaması çözülebilir 
+      proximityData.push(equipment.proximity);                                    // equipmentsChart() ile aynı kodun tekrarlaması çözülebilir
       if (equipment.isActive) {
         EquipmentGraphicComponent.IsactiveData.push(equipment);
         activeData.push(0);
         inactiveData.push(null);
-      }
-
-      else {
+      } else {
         inactiveData.push(0);
         activeData.push(null);
         EquipmentGraphicComponent.IsactiveData.push(equipment);
       }
     }
     this.equipmentData = [
-      { data: activeData, label: 'Gözlük Takıldı', type: 'scatter', pointRadius: 10, backgroundColor: 'green' },
-      { data: inactiveData, label: 'Gözlük Takılmadı', type: 'scatter', pointRadius: 10, backgroundColor: 'red' },
-      { data: heatData, label: 'Sıcaklık', type: 'bar' },
-      { data: altitudeData, label: 'Rakım', type: 'bar' },
-      { data: proximityData, label: 'Yakınlık', type: 'bar' }
+      {data: activeData, label: 'Gözlük Takıldı', type: 'scatter', pointRadius: 10, backgroundColor: 'green'},
+      {data: inactiveData, label: 'Gözlük Takılmadı', type: 'scatter', pointRadius: 10, backgroundColor: 'red'},
+      {data: heatData, label: 'Sıcaklık', type: 'bar'},
+      {data: altitudeData, label: 'Rakım', type: 'bar'},
+      {data: proximityData, label: 'Yakınlık', type: 'bar'}
 
     ];
   }
@@ -119,20 +128,18 @@ export class EquipmentGraphicComponent implements OnInit, OnDestroy {
         EquipmentGraphicComponent.IsactiveData.push(equipment);
         activeData.push(0);
         inactiveData.push(null);
-      }
-
-      else {
+      } else {
         inactiveData.push(0);
         activeData.push(null);
         EquipmentGraphicComponent.IsactiveData.push(equipment);
       }
     }
     this.equipmentData = [
-      { data: activeData, label: 'Gözlük Takıldı', type: 'scatter', pointRadius: 10, backgroundColor: 'green' },
-      { data: inactiveData, label: 'Gözlük Takılmadı', type: 'scatter', pointRadius: 10, backgroundColor: 'red' },
-      { fill: false, data: heatData, label: 'Sıcaklık', type: 'bar' },
-      { fill: false, data: altitudeData, label: 'Rakım', type: 'bar' },
-      { fill: false, data: proximityData, label: 'Yakınlık', type: 'bar' }
+      {data: activeData, label: 'Gözlük Takıldı', type: 'scatter', pointRadius: 10, backgroundColor: 'green'},
+      {data: inactiveData, label: 'Gözlük Takılmadı', type: 'scatter', pointRadius: 10, backgroundColor: 'red'},
+      {fill: false, data: heatData, label: 'Sıcaklık', type: 'bar'},
+      {fill: false, data: altitudeData, label: 'Rakım', type: 'bar'},
+      {fill: false, data: proximityData, label: 'Yakınlık', type: 'bar'}
 
     ];
   }
@@ -155,8 +162,7 @@ export class EquipmentGraphicComponent implements OnInit, OnDestroy {
             const is_running: string = EquipmentGraphicComponent.IsactiveData[tooltipItem.index].isRunnig ? 'çalışıyor' : 'çalışmıyor';
             result.push('Makine id: ' + machine_id);
             result.push('Durum: ' + is_running);
-          }
-          else {
+          } else {
             result.push('Değer: ' + tooltipItem.value);
           }
           return result;
@@ -169,15 +175,26 @@ export class EquipmentGraphicComponent implements OnInit, OnDestroy {
   addGraphic() {
     let graphic: Ifavories
     if (this.equipmentid) {
-      graphic = { data: this.equipmentData, label: this.equipmentLabel, type: 'equipment', id: this.id, chartOption: this.chartOption, equipmentId: this.equipmentid };
-    }
-    else {
-      graphic = { data: this.equipmentData, label: this.equipmentLabel, type: 'equipment', id: this.id, chartOption: this.chartOption };
+      graphic = {
+        data: this.equipmentData,
+        label: this.equipmentLabel,
+        type: 'equipment',
+        id: this.id,
+        chartOption: this.chartOption,
+        equipmentId: this.equipmentid
+      };
+    } else {
+      graphic = {
+        data: this.equipmentData,
+        label: this.equipmentLabel,
+        type: 'equipment',
+        id: this.id,
+        chartOption: this.chartOption
+      };
     }
 
     this.modalService.saveGraphic(graphic);
   }
-
 
 
 }

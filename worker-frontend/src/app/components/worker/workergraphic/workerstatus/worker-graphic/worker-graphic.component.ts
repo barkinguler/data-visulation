@@ -1,10 +1,10 @@
-import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { Iworkerstatus } from 'src/app/Imodel/Iworkerstatus';
-import { AuthService } from 'src/app/Services/auth.service';
-import { WorkersService } from 'src/app/Services/workers.service';
+import {formatDate} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {Iworkerstatus} from 'src/app/Imodel/Iworkerstatus';
+import {AuthService} from 'src/app/Services/auth.service';
+import {WorkersService} from 'src/app/Services/workers.service';
 
 @Component({
   selector: 'app-worker-graphic',
@@ -16,7 +16,8 @@ export class WorkerGraphicComponent implements OnInit {
     private route: ActivatedRoute,
     private workerService: WorkersService,
     private authService: AuthService
-  ) {}
+  ) {
+  }
 
   workerStatus: Iworkerstatus[] = [];
   workerStatusData: any;
@@ -68,8 +69,8 @@ export class WorkerGraphicComponent implements OnInit {
       blood_pressure_Data.push(status.bloodPressure);
     }
     this.workerStatusData = [
-      { fill: false, data: blood_sugar_Data, label: 'Kan Şekeri' },
-      { fill: false, data: blood_pressure_Data, label: 'Tansiyon' },
+      {fill: false, data: blood_sugar_Data, label: 'Kan Şekeri'},
+      {fill: false, data: blood_pressure_Data, label: 'Tansiyon'},
     ];
   }
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { EquipmentService } from 'src/app/Services/equipment.service';
+import {Component, OnInit} from '@angular/core';
+import {EquipmentService} from 'src/app/Services/equipment.service';
 
 @Component({
   selector: 'app-update-equipment',
@@ -10,7 +10,8 @@ export class UpdateEquipmentComponent implements OnInit {
   equipments;
   employerWorkplaceId: number = 1;
 
-  constructor(private equipmentService: EquipmentService) {}
+  constructor(private equipmentService: EquipmentService) {
+  }
 
   ngOnInit(): void {
     this.equipmentService

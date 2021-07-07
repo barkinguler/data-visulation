@@ -1,13 +1,14 @@
-import { formatDate } from '@angular/common';
-import { Input, OnDestroy } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { ILogs } from 'src/app/Imodel/Ilogs';
-import { MachinePredictService } from 'src/app/Services/machine-predict.service';
-import { MachineService } from 'src/app/Services/machine.service';
-import { MachineTabComponent } from '../machine-tab/machine-tab.component';
-import { MachineComponent } from '../machine.component';
+import {formatDate} from '@angular/common';
+import {Input, OnDestroy} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {ILogs} from 'src/app/Imodel/Ilogs';
+import {MachinePredictService} from 'src/app/Services/machine-predict.service';
+import {MachineService} from 'src/app/Services/machine.service';
+import {MachineTabComponent} from '../machine-tab/machine-tab.component';
+import {MachineComponent} from '../machine.component';
+
 @Component({
   selector: 'app-machine-graphic',
   templateUrl: './machine-graphic.component.html',
@@ -21,12 +22,14 @@ export class MachineGraphicComponent implements OnInit, OnDestroy {
     private MachineService: MachineService,
     private route: ActivatedRoute,
     private machinePredictService: MachinePredictService
-  ) {}
+  ) {
+  }
 
   machines: ILogs[] = [];
   machinesLabel: string[] = [];
   machineData: any;
   machinePredict = null;
+
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       //route bi işe yaramıyo ama içine koyunca kodu senkronize oluyo çözemedim
@@ -66,6 +69,7 @@ export class MachineGraphicComponent implements OnInit, OnDestroy {
       }
     );
   }
+
   getMachinesById(id: number) {
     let tmpArray: ILogs[] = [];
     tmpArray = this.machines.filter((machine) => machine.machineId == id);
@@ -80,7 +84,7 @@ export class MachineGraphicComponent implements OnInit, OnDestroy {
       heatData.push(machine.heat);
     }
     this.machineData = [
-      { fill: false, data: heatData, label: 'Sıcaklık', type: 'line' },
+      {fill: false, data: heatData, label: 'Sıcaklık', type: 'line'},
     ];
   }
 
@@ -96,9 +100,10 @@ export class MachineGraphicComponent implements OnInit, OnDestroy {
     }
 
     this.machineData = [
-      { fill: false, data: heatData, label: 'Sıcaklık', type: 'line' },
+      {fill: false, data: heatData, label: 'Sıcaklık', type: 'line'},
     ];
   }
+
   ngOnDestroy(): void {
     this.subscription1.unsubscribe();
     this.subscription2.unsubscribe();

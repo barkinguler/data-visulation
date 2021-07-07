@@ -1,14 +1,14 @@
 <div *ngIf="machinePredict>=0.5 && machinePredict <=0.7" class="alert alert-warning" role="alert">
-    30 gün içerisinde arızalanma ihtimali %{{machinePredict*100}}
+  30 gün içerisinde arızalanma ihtimali %{{machinePredict * 100}}
 </div>
 <div *ngIf="machinePredict>=0.7" class="alert alert-danger" role="alert">
-    30 gün içerisinde arızalanma ihtimali %{{machinePredict*100}}
+  30 gün içerisinde arızalanma ihtimali %{{machinePredict * 100}}
 </div>
 <div *ngIf="machinePredict < 0.5 && machinePredict!=null" class="alert alert-success" role="alert">
-    30 gün içerisinde arızalanma ihtimali %{{machinePredict*100}}
+  30 gün içerisinde arızalanma ihtimali %{{machinePredict * 100}}
 </div>
 <div class="chart-custom" style="margin-top: 20px;">
-    <p>Makinelerin Durum Grafiği</p>
-    <canvas baseChart [datasets]="machineData" [labels]="machinesLabel" chartType="bar" ></canvas>
-    
+  <p>Makinelerin Durum Grafiği</p>
+  <canvas baseChart [datasets]="machineData" [labels]="machinesLabel" chartType="bar"></canvas>
+
 </div>

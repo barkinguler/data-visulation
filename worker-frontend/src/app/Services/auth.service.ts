@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { IuserSystemInfo } from '../Imodel/IuserSystemInfo';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {IuserSystemInfo} from '../Imodel/IuserSystemInfo';
 
 @Injectable({
   providedIn: 'root',
@@ -11,12 +11,14 @@ export class AuthService {
   private serviceUrl = 'http://104.155.99.161:8080/login';
   private userSystemInfo: IuserSystemInfo | any;
   private token;
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) {
+  }
 
   async generateToken(userSystemInfo) {
     document.body.style.cursor = 'wait';
     this.userSystemInfo = await this.http
-      .post(this.serviceUrl, userSystemInfo, { responseType: 'text' })
+      .post(this.serviceUrl, userSystemInfo, {responseType: 'text'})
       .toPromise()
       .catch((header) => {
         console.log(header);

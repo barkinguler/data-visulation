@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Iworkplace } from 'src/app/Imodel/Iworkplace';
-import { FactoriesService } from 'src/app/Services/factories.service';
+import {Component, OnInit} from '@angular/core';
+import {Iworkplace} from 'src/app/Imodel/Iworkplace';
+import {FactoriesService} from 'src/app/Services/factories.service';
 
 @Component({
   selector: 'app-mainpage',
@@ -8,7 +8,9 @@ import { FactoriesService } from 'src/app/Services/factories.service';
   styleUrls: ['./mainpage.component.css'],
 })
 export class MainpageComponent implements OnInit {
-  constructor(private factoriesServis: FactoriesService) {}
+  constructor(private factoriesServis: FactoriesService) {
+  }
+
   workPlaces = [];
 
   async ngOnInit() {
@@ -21,7 +23,9 @@ export class MainpageComponent implements OnInit {
     console.log(this.workPlaces);
   }
 
-  getWorkPlaces() {}
+  getWorkPlaces() {
+  }
+
   showWorkers(value: Iworkplace) {
     this.factoriesServis.setSelectedFactoryId(value.id);
   }

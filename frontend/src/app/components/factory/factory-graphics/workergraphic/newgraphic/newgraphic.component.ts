@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { Ifavories } from 'src/app/Imodel/Ifavories';
-import { ModalService } from 'src/app/Services/modal.service';
-import { NewgraphicService } from 'src/app/Services/newgraphic.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {Ifavories} from 'src/app/Imodel/Ifavories';
+import {ModalService} from 'src/app/Services/modal.service';
+import {NewgraphicService} from 'src/app/Services/newgraphic.service';
 
 @Component({
   selector: 'app-newgraphic',
@@ -15,8 +15,9 @@ export class NewgraphicComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   graphicValues: Ifavories[] = [];
 
-  constructor(private newGraphicService: NewgraphicService, private route: ActivatedRoute, private ModalService: ModalService) { }
-  
+  constructor(private newGraphicService: NewgraphicService, private route: ActivatedRoute, private ModalService: ModalService) {
+  }
+
   ngOnInit(): void {
     this.route.params
       .subscribe(
@@ -24,7 +25,7 @@ export class NewgraphicComponent implements OnInit, OnDestroy {
           this.id = +params['id'];
 
         })
-        
+
     this.subscription = this.newGraphicService.customGraphic.subscribe(
       value => {
         this.graphicValues = value;
@@ -38,7 +39,7 @@ export class NewgraphicComponent implements OnInit, OnDestroy {
 
   addFavority(value: Ifavories) {
     let graphic: Ifavories;
-    graphic = { data: value.data, label: value.label, type: 'custom', id: this.id };
+    graphic = {data: value.data, label: value.label, type: 'custom', id: this.id};
     console.log(graphic)
     this.ModalService.saveGraphic(graphic);
   }
