@@ -1,12 +1,12 @@
-<div class="chart-custom" style="margin-top: 20px;">
-        <div *ngIf="predict==1" class="alert alert-danger" role="alert">
-                Kullanıcıda İnme Riski Bulunmaktadır!
-              </div>
-              <div *ngIf="predict==0" class="alert alert-success" role="alert">
-                Kullanıcıda İnme Riski Bulunmamaktadır.
-              </div>
-        <router-outlet name="workerstatus"></router-outlet>
-        <router-outlet name="machine"></router-outlet>
-        <router-outlet name="equipment"></router-outlet>
-        <app-newgraphic></app-newgraphic>
+<div class="chart-custom" style="margin-top: 20px">
+  <div *ngIf="predict == 1" class="alert alert-danger" role="alert">
+    Kullanıcıda İnme Riski Bulunmaktadır!
+  </div>
+  <div *ngIf="predict == 0" class="alert alert-success" role="alert">
+    Kullanıcıda İnme Riski Bulunmamaktadır.
+  </div>
+  <router-outlet name="workerstatus"></router-outlet>
+  <router-outlet name="machine"></router-outlet>
+  <router-outlet name="equipment"></router-outlet>
+  <app-newgraphic></app-newgraphic>
 </div>

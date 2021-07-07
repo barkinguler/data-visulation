@@ -1,6 +1,6 @@
-export interface IuserSystemInfo{
-  username: string ;
-  password: string ;
+export interface IuserSystemInfo {
+  username: string;
+  password: string;
   userId: number;
   userRole: string;
   token: string;

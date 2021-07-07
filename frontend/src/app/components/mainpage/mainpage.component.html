@@ -1,14 +1,24 @@
 <div class="list-group">
-     <a routerLink="/factory" class="list-group-item list-group-item-action flex-column align-items-start"
-        *ngFor="let workplace of workPlaces;" (click)="showWorkers(workplace)">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Factory_1b.svg/1200px-Factory_1b.svg.png"
-            class="img-responsive" style="max-height: 70px;float: right;">
-        <div class="d-flex w-100 justify-content-between">
-            <h4 class="mb-1"><strong>{{workplace.name}}</strong></h4>
-            <p><strong>Tel no: </strong>{{workplace.telNo}}</p>
-            <p> <strong>E-posta adresi: </strong>{{workplace.eposta}}</p>
-        </div>
-        <p class="mb-1">{{workplace.name}} hakkındaki raporları grafik halinde görün.
-        </p>
-    </a>
+  <a
+    routerLink="/factory"
+    class="list-group-item list-group-item-action flex-column align-items-start"
+    *ngFor="let workplace of workPlaces"
+    (click)="showWorkers(workplace)"
+  >
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Factory_1b.svg/1200px-Factory_1b.svg.png"
+      class="img-responsive"
+      style="max-height: 70px; float: right"
+    />
+    <div class="d-flex w-100 justify-content-between">
+      <h4 class="mb-1">
+        <strong>{{ workplace.name }}</strong>
+      </h4>
+      <p><strong>Tel no: </strong>{{ workplace.telNo }}</p>
+      <p><strong>E-posta adresi: </strong>{{ workplace.eposta }}</p>
+    </div>
+    <p class="mb-1">
+      {{ workplace.name }} hakkındaki raporları grafik halinde görün.
+    </p>
+  </a>
 </div>

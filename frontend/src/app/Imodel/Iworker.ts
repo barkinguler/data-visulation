@@ -1,8 +1,7 @@
-import {Imachine} from './Imachine';
-import {Iworkplace} from './Iworkplace';
+import { Imachine } from './Imachine';
+import { Iworkplace } from './Iworkplace';
 
 export interface Iworker {
-
   id: number;
   firstName?: string;
   lastName?: string;
@@ -15,6 +14,4 @@ export interface Iworker {
   bloodGroup?: string;
   workplaceId?: Iworkplace;
   machineId?: Array<Imachine>;
-
-
 }

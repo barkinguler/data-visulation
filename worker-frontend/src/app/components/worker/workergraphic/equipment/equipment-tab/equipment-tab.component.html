@@ -1,6 +1,12 @@
 <ul class="nav nav-tabs">
-  <li class="nav-item" style="cursor: pointer;" *ngFor="let equipment of getEquipments()" appSelectedTab>
-    <a class="nav-link" (click)="showEquipment(equipment)">Ekipman: {{equipment}}</a>
+  <li
+    class="nav-item"
+    style="cursor: pointer"
+    *ngFor="let equipment of getEquipments()"
+    appSelectedTab
+  >
+    <a class="nav-link" (click)="showEquipment(equipment)"
+      >Ekipman: {{ equipment }}</a
+    >
   </li>
-
 </ul>

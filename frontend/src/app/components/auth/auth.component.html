@@ -1,31 +1,42 @@
 <div class="container">
-
   <div class="row">
-
     <div class="col-md-4 col-md-offset-4">
-
       <aside>
         <div class="card">
           <article class="card-body">
-
             <h4 class="card-title mb-4 mt-1">Giriş</h4>
 
             <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
               <div class="form-group">
                 <label>Kullanıcı Adı</label>
-                <input class="form-control" placeholder="Kullanıcı Adı" [(ngModel)]="userSystemInfo.username" ngModel
-                  required name="username">
+                <input
+                  class="form-control"
+                  placeholder="Kullanıcı Adı"
+                  [(ngModel)]="userSystemInfo.username"
+                  ngModel
+                  required
+                  name="username"
+                />
               </div>
               <div class="form-group">
-
                 <label>Şifre</label>
-                <input class="form-control" placeholder="******" type="password" [(ngModel)]="userSystemInfo.password"
-                  ngModel required name="password">
+                <input
+                  class="form-control"
+                  placeholder="******"
+                  type="password"
+                  [(ngModel)]="userSystemInfo.password"
+                  ngModel
+                  required
+                  name="password"
+                />
               </div>
 
-
               <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block" [disabled]="!authForm.valid">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-block"
+                  [disabled]="!authForm.valid"
+                >
                   Giriş
                 </button>
               </div>
@@ -36,14 +47,7 @@
             </form>
           </article>
         </div>
-
-
       </aside>
-
-
     </div>
-
   </div>
-
-
 </div>

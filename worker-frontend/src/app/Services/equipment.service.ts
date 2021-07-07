@@ -10,7 +10,8 @@ import { ILogs } from '../Imodel/Ilogs';
   providedIn: 'root',
 })
 export class EquipmentService {
-  private equipmentLogApiBaseUrl = 'http://104.155.99.161:8080/equipmentLogApi/v1/';
+  private equipmentLogApiBaseUrl =
+    'http://104.155.99.161:8080/equipmentLogApi/v1/';
 
   private logs = new Subject<ILogs[]>();
   private equipmentBaseUrl = 'http://104.155.99.161:8080/equipmentApi/v1/';
@@ -23,9 +24,7 @@ export class EquipmentService {
     private authService: AuthService,
     private http: HttpClient,
     private messageService: MessageService
-  ) {
-  }
-
+  ) {}
 
   findEquipment(id: number): Observable<any> {
     document.body.style.cursor = 'wait';
@@ -48,7 +47,6 @@ export class EquipmentService {
         })
       );
   }
-
 
   getStoredLogs(): Observable<ILogs[]> {
     return this.logs;
@@ -79,10 +77,10 @@ export class EquipmentService {
     console.log(workerId, equipmentId);
     return this.http.put(
       this.equipmentBaseUrl +
-      'updateWorkerIdByEquipmentId/' +
-      equipmentId +
-      '/' +
-      workerId,
+        'updateWorkerIdByEquipmentId/' +
+        equipmentId +
+        '/' +
+        workerId,
       null,
       { headers: this.header }
     );

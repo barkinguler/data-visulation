@@ -3,13 +3,13 @@
 </div>
 <div>
   <mat-accordion class="example-headers-align" multi>
-    <mat-expansion-panel *ngFor='let machine of machines'>
+    <mat-expansion-panel *ngFor="let machine of machines">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <strong> Sicil No:</strong> {{machine.id}}
+          <strong> Sicil No:</strong> {{ machine.id }}
         </mat-panel-title>
         <mat-panel-description>
-          {{machine.name}} -> {{machine.job}}
+          {{ machine.name }} -> {{ machine.job }}
           <mat-icon>settings</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
@@ -17,50 +17,88 @@
       <form #form ngNativeValidate>
         <mat-form-field>
           <mat-label>Makine Ismi</mat-label>
-          <input [(ngModel)]="machine.name" id="name" matInput name="name" required type="text"
-                 value="{{machine.name}}">
+          <input
+            [(ngModel)]="machine.name"
+            id="name"
+            matInput
+            name="name"
+            required
+            type="text"
+            value="{{ machine.name }}"
+          />
         </mat-form-field>
-        <br>
+        <br />
         <mat-form-field>
           <mat-label>Makine'nin İşi</mat-label>
-          <input [(ngModel)]="machine.job" id="job" matInput name="job" required type="text" value="{{machine.job}}">
+          <input
+            [(ngModel)]="machine.job"
+            id="job"
+            matInput
+            name="job"
+            required
+            type="text"
+            value="{{ machine.job }}"
+          />
         </mat-form-field>
-        <br>
+        <br />
         <mat-form-field>
           <mat-label>Makine Gelecek Bakım Tarihi</mat-label>
-          <input [(ngModel)]="machine.newMaintenanceDate" id="newMaintenance" matInput name="newMaintenance" required
-                 type="text"
-                 value="{{machine.newMaintenanceDate}}">
+          <input
+            [(ngModel)]="machine.newMaintenanceDate"
+            id="newMaintenance"
+            matInput
+            name="newMaintenance"
+            required
+            type="text"
+            value="{{ machine.newMaintenanceDate }}"
+          />
         </mat-form-field>
-        <br>
+        <br />
         <mat-form-field>
           <mat-label>Makine Son Bakım Tarihi</mat-label>
-          <input [(ngModel)]="machine.oldMaintenanceDate" id="oldMaintenance" matInput name="oldMaintenance" required
-                 type="text"
-                 value="{{machine.oldMaintenanceDate}}">
+          <input
+            [(ngModel)]="machine.oldMaintenanceDate"
+            id="oldMaintenance"
+            matInput
+            name="oldMaintenance"
+            required
+            type="text"
+            value="{{ machine.oldMaintenanceDate }}"
+          />
         </mat-form-field>
-        <br>
+        <br />
         <mat-form-field>
           <mat-label>Yetki Seviyesi</mat-label>
-          <input [(ngModel)]="machine.authorityLevel" id="authorityLevel" matInput max="7" min="1" name="authorityLevel"
-                 required
-                 type="number" value="{{machine.authorityLevel}}">
+          <input
+            [(ngModel)]="machine.authorityLevel"
+            id="authorityLevel"
+            matInput
+            max="7"
+            min="1"
+            name="authorityLevel"
+            required
+            type="number"
+            value="{{ machine.authorityLevel }}"
+          />
         </mat-form-field>
-
       </form>
       <mat-action-row>
-        <button (click)=" form.checkValidity() ? updateMachineById(machine) : null" enctype='multipart/form-data'
-                mat-button
-                style="background-color: green;">Makine Bilgilerini Güncelle
+        <button
+          (click)="form.checkValidity() ? updateMachineById(machine) : null"
+          enctype="multipart/form-data"
+          mat-button
+          style="background-color: green"
+        >
+          Makine Bilgilerini Güncelle
         </button>
-        <button (click)="deleteMachineById(machine.id)" mat-button style="background-color: red;">Makineyi Kullanımdan
-          Kaldır
+        <button
+          (click)="deleteMachineById(machine.id)"
+          mat-button
+          style="background-color: red"
+        >
+          Makineyi Kullanımdan Kaldır
         </button>
-
       </mat-action-row>
-
-
     </mat-expansion-panel>
-
   </mat-accordion>
 </div>

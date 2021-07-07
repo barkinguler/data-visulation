@@ -14,33 +14,30 @@ import { MachineComponent } from '../machine.component';
 @Component({
   selector: 'app-machine-tab',
   templateUrl: './machine-tab.component.html',
-  styleUrls: ['./machine-tab.component.css']
+  styleUrls: ['./machine-tab.component.css'],
 })
 export class MachineTabComponent implements OnInit, OnDestroy {
-
-  constructor(private route: ActivatedRoute, private MachineService: MachineService) {
-
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private MachineService: MachineService
+  ) {}
   subscription: Subscription;
   static selectedMachineId = new Subject<number>();
 
   machines: ILogs[] = [];
   ngOnInit(): void {
     this.subscription = this.MachineService.getStoredLogs().subscribe(
-
-      machines => {
+      (machines) => {
         this.machines = machines;
       }
-
-    )
-
+    );
   }
   getMachines() {
     const tmp: number[] = [];
     for (let machine of this.machines) {
       tmp.push(machine.machineId);
     }
-    const tempArray = [...tmp].sort();       //değişebilir aynı tab numaralarını eleme
+    const tempArray = [...tmp].sort(); //değişebilir aynı tab numaralarını eleme
 
     for (let i = 0; i < tempArray.length; i++) {
       for (let k = i + 1; k < tempArray.length; k++) {
@@ -49,7 +46,6 @@ export class MachineTabComponent implements OnInit, OnDestroy {
           tempArray.splice(k, 1);
         }
       }
-
     }
 
     return tempArray;
@@ -57,12 +53,8 @@ export class MachineTabComponent implements OnInit, OnDestroy {
 
   showMachine(machine_id: number) {
     MachineTabComponent.selectedMachineId.next(machine_id);
-
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
-
-
 }

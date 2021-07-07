@@ -1,16 +1,14 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MessageService {
-
   private message = '';
   private messageColor = '';
   private isActive = false;
 
-  constructor() {
-  }
+  constructor() {}
 
   getMessage() {
     return this.message;

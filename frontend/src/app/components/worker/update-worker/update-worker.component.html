@@ -2,15 +2,15 @@
   <app-message></app-message>
 </div>
 
-<div *ngIf='workers'>
+<div *ngIf="workers">
   <mat-accordion class="example-headers-align" multi>
-    <mat-expansion-panel *ngFor='let worker of workers'>
+    <mat-expansion-panel *ngFor="let worker of workers">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <strong> Sicil No:</strong> {{worker.id}}
+          <strong> Sicil No:</strong> {{ worker.id }}
         </mat-panel-title>
         <mat-panel-description>
-          {{worker.firstName}} {{worker.lastName}}
+          {{ worker.firstName }} {{ worker.lastName }}
           <mat-icon>account_circle</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
@@ -18,71 +18,140 @@
       <form #form ngNativeValidate>
         <mat-form-field>
           <mat-label>First name</mat-label>
-          <input [(ngModel)]="worker.firstName" id="firstname" matInput name="firstname" required type="text"
-                 value="{{worker.firstName}}">
+          <input
+            [(ngModel)]="worker.firstName"
+            id="firstname"
+            matInput
+            name="firstname"
+            required
+            type="text"
+            value="{{ worker.firstName }}"
+          />
         </mat-form-field>
-        <br>
+        <br />
         <mat-form-field>
           <mat-label>Last name</mat-label>
-          <input [(ngModel)]="worker.lastName" id="lastName" matInput name="lastName" required type="text"
-                 value="{{worker.lastName}}">
+          <input
+            [(ngModel)]="worker.lastName"
+            id="lastName"
+            matInput
+            name="lastName"
+            required
+            type="text"
+            value="{{ worker.lastName }}"
+          />
         </mat-form-field>
-        <br>
+        <br />
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input [(ngModel)]="worker.email" id="email" matInput name="email" required type="email"
-                 value="{{worker.email}}">
+          <input
+            [(ngModel)]="worker.email"
+            id="email"
+            matInput
+            name="email"
+            required
+            type="email"
+            value="{{ worker.email }}"
+          />
         </mat-form-field>
-        <br>
+        <br />
         <mat-form-field>
           <mat-label>Telefon Numarası</mat-label>
-          <input [(ngModel)]="worker.phoneNumber" id="phoneNumber" matInput name="phoneNumber" required type="text"
-                 value="{{worker.phoneNumber}}">
+          <input
+            [(ngModel)]="worker.phoneNumber"
+            id="phoneNumber"
+            matInput
+            name="phoneNumber"
+            required
+            type="text"
+            value="{{ worker.phoneNumber }}"
+          />
         </mat-form-field>
-        <br>
+        <br />
         <mat-form-field>
           <mat-label>Yaş</mat-label>
-          <input id="age" matInput max="53" min="1" name="age" required type="number" value="{{worker.age}}">
+          <input
+            id="age"
+            matInput
+            max="53"
+            min="1"
+            name="age"
+            required
+            type="number"
+            value="{{ worker.age }}"
+          />
         </mat-form-field>
-        <br>
+        <br />
         <mat-form-field>
           <mat-label>Kilo</mat-label>
-          <input [(ngModel)]="worker.weight" id="weight" matInput name="weight" required type="text"
-                 value="{{worker.weight}}">
+          <input
+            [(ngModel)]="worker.weight"
+            id="weight"
+            matInput
+            name="weight"
+            required
+            type="text"
+            value="{{ worker.weight }}"
+          />
         </mat-form-field>
-        <br>
+        <br />
         <mat-form-field>
           <mat-label>Boyu</mat-label>
-          <input [(ngModel)]="worker.length" id="lenght" matInput name="length" required type="text"
-                 value="{{worker.lenght}}">
+          <input
+            [(ngModel)]="worker.length"
+            id="lenght"
+            matInput
+            name="length"
+            required
+            type="text"
+            value="{{ worker.lenght }}"
+          />
         </mat-form-field>
-        <br>
+        <br />
         <mat-form-field>
           <mat-label>Kan Grubu</mat-label>
-          <input [(ngModel)]="worker.bloodGroup" id="bloodGroup" matInput name="bloodGroup" required type="text"
-                 value="{{worker.bloodGroup}}">
+          <input
+            [(ngModel)]="worker.bloodGroup"
+            id="bloodGroup"
+            matInput
+            name="bloodGroup"
+            required
+            type="text"
+            value="{{ worker.bloodGroup }}"
+          />
         </mat-form-field>
-        <br>
+        <br />
         <mat-form-field>
           <mat-label>Hastalıkları</mat-label>
-          <input [(ngModel)]="worker.disease" id="disease" matInput name="disease" required type="text"
-                 value="{{worker.disease}}">
+          <input
+            [(ngModel)]="worker.disease"
+            id="disease"
+            matInput
+            name="disease"
+            required
+            type="text"
+            value="{{ worker.disease }}"
+          />
         </mat-form-field>
-        <br>
+        <br />
       </form>
       <mat-action-row>
-        <button (click)=" form.checkValidity() ? updateWorkerById(worker) : null" enctype='multipart/form-data'
-                mat-button
-                style="background-color: green;">Çalışan Bilgilerini Güncelle
+        <button
+          (click)="form.checkValidity() ? updateWorkerById(worker) : null"
+          enctype="multipart/form-data"
+          mat-button
+          style="background-color: green"
+        >
+          Çalışan Bilgilerini Güncelle
         </button>
-        <button (click)="deleteWorkerById(worker.id)" mat-button style="background-color: red;">Çalışanı tüm sistem
-          kayıtlarıyla beraber sil
+        <button
+          (click)="deleteWorkerById(worker.id)"
+          mat-button
+          style="background-color: red"
+        >
+          Çalışanı tüm sistem kayıtlarıyla beraber sil
         </button>
-
       </mat-action-row>
-
-
     </mat-expansion-panel>
-
   </mat-accordion>
 </div>

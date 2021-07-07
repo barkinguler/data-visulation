@@ -1,7 +1,7 @@
-import {Component, Injectable, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
-import {ImachineItems} from 'src/app/Imodel/ImachineItems';
-import {MachineService} from 'src/app/Services/machine.service';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { ImachineItems } from 'src/app/Imodel/ImachineItems';
+import { MachineService } from 'src/app/Services/machine.service';
 
 @Component({
   selector: 'app-machine-items',
@@ -10,7 +10,7 @@ import {MachineService} from 'src/app/Services/machine.service';
 })
 export class MachineItemsComponent implements OnInit {
   @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
   })
   id: number;
   machineItems: ImachineItems[] = [];
@@ -18,8 +18,7 @@ export class MachineItemsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private MachineService: MachineService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.route.parent.params.subscribe((params: Params) => {

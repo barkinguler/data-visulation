@@ -9,11 +9,13 @@ import { EquipmentTabComponent } from '../equipment-tab/equipment-tab.component'
 @Component({
   selector: 'app-equipment-graphic',
   templateUrl: './equipment-graphic.component.html',
-  styleUrls: ['./equipment-graphic.component.css']
+  styleUrls: ['./equipment-graphic.component.css'],
 })
 export class EquipmentGraphicComponent implements OnInit, OnDestroy {
-
-  constructor(private equipmentService: EquipmentService, private route: ActivatedRoute) { }
+  constructor(
+    private equipmentService: EquipmentService,
+    private route: ActivatedRoute
+  ) {}
   subscription1: Subscription;
   subscription2: Subscription;
   static IsactiveData: ILogs[] = [];
@@ -23,27 +25,26 @@ export class EquipmentGraphicComponent implements OnInit, OnDestroy {
   equipmentid: number;
 
   ngOnInit(): void {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-
-          //route bi işe yaramıyo ama içine koyunca kodu senkronize oluyo çözemedim
-          this.equipmentData = [];
+    this.route.params.subscribe((params: Params) => {
+      //route bi işe yaramıyo ama içine koyunca kodu senkronize oluyo çözemedim
+      this.equipmentData = [];
+      this.equipmentLabel = [];
+      EquipmentGraphicComponent.IsactiveData = [];
+      this.subscription1 = this.equipmentService
+        .getStoredLogs()
+        .subscribe((equipments) => {
           this.equipmentLabel = [];
-          EquipmentGraphicComponent.IsactiveData = [];
-          this.subscription1 = this.equipmentService.getStoredLogs().subscribe(
-            equipments => {
-              this.equipmentLabel = [];
-              this.equipmentData = [];
+          this.equipmentData = [];
 
-              this.equipments = equipments;
-              this.equipments.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-              this.equipmentsChart();
-            }
+          this.equipments = equipments;
+          this.equipments.sort(
+            (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
           );
+          this.equipmentsChart();
         });
+    });
     this.subscription2 = EquipmentTabComponent.selectedEquipmentId.subscribe(
-      id => {
+      (id) => {
         this.equipmentLabel = [];
         this.equipmentData = [];
         this.getMachinesById(id);
@@ -51,12 +52,11 @@ export class EquipmentGraphicComponent implements OnInit, OnDestroy {
     );
   }
   getMachinesById(id: number) {
-    let tmpArray: ILogs[] = []
-    tmpArray = this.equipments.filter(equipment => equipment.id == id);
+    let tmpArray: ILogs[] = [];
+    tmpArray = this.equipments.filter((equipment) => equipment.id == id);
     this.equipmentSelectedChart(tmpArray);
   }
   equipmentSelectedChart(equipments: Array<ILogs>) {
-
     const activeData: number[] = [];
     const inactiveData: number[] = [];
     const heatData: number[] = [];
@@ -67,26 +67,35 @@ export class EquipmentGraphicComponent implements OnInit, OnDestroy {
       this.equipmentLabel.push(formattedDate);
       heatData.push(equipment.heat);
       altitudeData.push(equipment.altitude);
-      proximityData.push(equipment.proximity);                                    // equipmentsChart() ile aynı kodun tekrarlaması çözülebilir 
+      proximityData.push(equipment.proximity); // equipmentsChart() ile aynı kodun tekrarlaması çözülebilir
       if (equipment.isActive) {
         EquipmentGraphicComponent.IsactiveData.push(equipment);
         activeData.push(0);
         inactiveData.push(null);
-      }
-
-      else {
+      } else {
         inactiveData.push(0);
         activeData.push(null);
         EquipmentGraphicComponent.IsactiveData.push(equipment);
       }
     }
     this.equipmentData = [
-      { data: activeData, label: 'Gözlük Takıldı', type: 'scatter', pointRadius: 10, backgroundColor: 'green' },
-      { data: inactiveData, label: 'Gözlük Takılmadı', type: 'scatter', pointRadius: 10, backgroundColor: 'red' },
+      {
+        data: activeData,
+        label: 'Gözlük Takıldı',
+        type: 'scatter',
+        pointRadius: 10,
+        backgroundColor: 'green',
+      },
+      {
+        data: inactiveData,
+        label: 'Gözlük Takılmadı',
+        type: 'scatter',
+        pointRadius: 10,
+        backgroundColor: 'red',
+      },
       { data: heatData, label: 'Sıcaklık', type: 'bar' },
       { data: altitudeData, label: 'Rakım', type: 'bar' },
-      { data: proximityData, label: 'Yakınlık', type: 'bar' }
-
+      { data: proximityData, label: 'Yakınlık', type: 'bar' },
     ];
   }
 
@@ -106,21 +115,30 @@ export class EquipmentGraphicComponent implements OnInit, OnDestroy {
         EquipmentGraphicComponent.IsactiveData.push(equipment);
         activeData.push(0);
         inactiveData.push(null);
-      }
-
-      else {
+      } else {
         inactiveData.push(0);
         activeData.push(null);
         EquipmentGraphicComponent.IsactiveData.push(equipment);
       }
     }
     this.equipmentData = [
-      { data: activeData, label: 'Gözlük Takıldı', type: 'scatter', pointRadius: 10, backgroundColor: 'green' },
-      { data: inactiveData, label: 'Gözlük Takılmadı', type: 'scatter', pointRadius: 10, backgroundColor: 'red' },
+      {
+        data: activeData,
+        label: 'Gözlük Takıldı',
+        type: 'scatter',
+        pointRadius: 10,
+        backgroundColor: 'green',
+      },
+      {
+        data: inactiveData,
+        label: 'Gözlük Takılmadı',
+        type: 'scatter',
+        pointRadius: 10,
+        backgroundColor: 'red',
+      },
       { data: heatData, label: 'Sıcaklık', type: 'bar' },
       { data: altitudeData, label: 'Rakım', type: 'bar' },
-      { data: proximityData, label: 'Yakınlık', type: 'bar' }
-
+      { data: proximityData, label: 'Yakınlık', type: 'bar' },
     ];
   }
 
@@ -135,22 +153,23 @@ export class EquipmentGraphicComponent implements OnInit, OnDestroy {
         label(tooltipItem, data) {
           const result = [];
 
-
           if (tooltipItem.datasetIndex < 2) {
-
-            const machine_id = EquipmentGraphicComponent.IsactiveData[tooltipItem.index].machineId;
-            const is_running: string = EquipmentGraphicComponent.IsactiveData[tooltipItem.index].isRunnig ? 'çalışıyor' : 'çalışmıyor';
+            const machine_id =
+              EquipmentGraphicComponent.IsactiveData[tooltipItem.index]
+                .machineId;
+            const is_running: string = EquipmentGraphicComponent.IsactiveData[
+              tooltipItem.index
+            ].isRunnig
+              ? 'çalışıyor'
+              : 'çalışmıyor';
             result.push('Makine id: ' + machine_id);
             result.push('Durum: ' + is_running);
-          }
-          else {
+          } else {
             result.push('Değer: ' + tooltipItem.value);
           }
           return result;
-
-        }
-      }
-    }
+        },
+      },
+    },
   };
-
 }

@@ -3,22 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MachinePredictService {
-getUrl='http://104.155.99.161:8080/machineApi/v1/getMachineAiPredictById/';
+  getUrl = 'http://104.155.99.161:8080/machineApi/v1/getMachineAiPredictById/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   private header = new HttpHeaders({
     'Content-Type': 'application/json',
-    Authorization: 'Bearer ' + localStorage.getItem('token')
+    Authorization: 'Bearer ' + localStorage.getItem('token'),
   });
 
-  getPredict(id:number){
-    return this.http
-      .get(
-        this.getUrl + id, {headers: this.header}
-      );
+  getPredict(id: number) {
+    return this.http.get(this.getUrl + id, { headers: this.header });
   }
 }

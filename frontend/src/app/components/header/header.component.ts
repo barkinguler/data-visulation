@@ -9,30 +9,28 @@ import { ModalService } from 'src/app/Services/modal.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
   favories = [];
 
-  constructor(public authservice: AuthService, private router: Router, private modalService: ModalService) {
-
-  }
-  ngOnInit(): void {
-
-
-  }
+  constructor(
+    public authservice: AuthService,
+    private router: Router,
+    private modalService: ModalService
+  ) {}
+  ngOnInit(): void {}
 
   exit() {
     localStorage.removeItem('token');
     localStorage.removeItem('userRole');
     this.router.navigate(['auth']);
-    this.modalService.graphics = []
+    this.modalService.graphics = [];
     this.modalService.subjectGraphics.next(this.modalService.graphics);
   }
-  
+
   getFavories() {
     console.log(this.favories);
     return this.favories;
   }
-
 }

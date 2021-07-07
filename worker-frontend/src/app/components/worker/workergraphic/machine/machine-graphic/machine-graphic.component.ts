@@ -11,77 +11,64 @@ import { MachineComponent } from '../machine.component';
 @Component({
   selector: 'app-machine-graphic',
   templateUrl: './machine-graphic.component.html',
-  styleUrls: ['./machine-graphic.component.css']
-
+  styleUrls: ['./machine-graphic.component.css'],
 })
 export class MachineGraphicComponent implements OnInit, OnDestroy {
   subscription1: Subscription;
   subscription2: Subscription;
 
-  constructor(private MachineService: MachineService, private route: ActivatedRoute,private machinePredictService:MachinePredictService) {
-
-  }
+  constructor(
+    private MachineService: MachineService,
+    private route: ActivatedRoute,
+    private machinePredictService: MachinePredictService
+  ) {}
 
   machines: ILogs[] = [];
   machinesLabel: string[] = [];
   machineData: any;
-  machinePredict=null;
+  machinePredict = null;
   ngOnInit(): void {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
+    this.route.params.subscribe((params: Params) => {
+      //route bi işe yaramıyo ama içine koyunca kodu senkronize oluyo çözemedim
+      this.machineData = [];
+      this.machinesLabel = [];
 
-          //route bi işe yaramıyo ama içine koyunca kodu senkronize oluyo çözemedim
-          this.machineData = [];
-          this.machinesLabel = [];
-
-          this.subscription1 = this.MachineService.getStoredLogs().subscribe(
-            machines => {
-
-              this.machines = machines;
-              this.machines.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-              this.machinesChart();
-            }
+      this.subscription1 = this.MachineService.getStoredLogs().subscribe(
+        (machines) => {
+          this.machines = machines;
+          this.machines.sort(
+            (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
           );
-        });
+          this.machinesChart();
+        }
+      );
+    });
 
     this.subscription2 = MachineTabComponent.selectedMachineId.subscribe(
-      id => {
-        
+      (id) => {
         this.machinesLabel = [];
         this.machineData = [];
         this.getMachinesById(id);
-        this.machinePredictService.getPredict(id).subscribe(
-          value=>{
-            if(value!=null){
-              this.machinePredict=value;
+        this.machinePredictService.getPredict(id).subscribe((value) => {
+          if (value != null) {
+            this.machinePredict = value;
+            clearInterval(interval);
+          } else this.machinePredict = null;
+        });
+        var interval = setInterval(() => {
+          this.machinePredictService.getPredict(id).subscribe((value) => {
+            if (value != null) {
+              this.machinePredict = value;
               clearInterval(interval);
-            }
-            else
-            this.machinePredict=null;
-              
-          }
-        );
-        var interval= setInterval(()=>{
-          this.machinePredictService.getPredict(id).subscribe(
-            value=>{
-              if(value!=null){
-                this.machinePredict=value;
-                clearInterval(interval);
-              }
-              else
-              this.machinePredict=null;
-                
-            }
-          );
-          
-         }, 5000);
+            } else this.machinePredict = null;
+          });
+        }, 5000);
       }
     );
   }
   getMachinesById(id: number) {
-    let tmpArray: ILogs[] = []
-    tmpArray = this.machines.filter(machine => machine.machineId == id);
+    let tmpArray: ILogs[] = [];
+    tmpArray = this.machines.filter((machine) => machine.machineId == id);
     this.machineSelectedChart(tmpArray);
   }
 
@@ -91,15 +78,11 @@ export class MachineGraphicComponent implements OnInit, OnDestroy {
       const formattedDate = formatDate(machine.date, 'dd/MM/yyyy', 'en-US');
       this.machinesLabel.push(formattedDate);
       heatData.push(machine.heat);
-
     }
     this.machineData = [
-      { fill: false, data: heatData, label: 'Sıcaklık', type: 'line' }
-
+      { fill: false, data: heatData, label: 'Sıcaklık', type: 'line' },
     ];
-
   }
-
 
   machinesChart() {
     this.machineData = [];
@@ -110,20 +93,14 @@ export class MachineGraphicComponent implements OnInit, OnDestroy {
       const formattedDate = formatDate(machine.date, 'dd/MM/yyyy', 'en-US');
       this.machinesLabel.push(formattedDate);
       heatData.push(machine.heat);
-
     }
 
     this.machineData = [
-      { fill: false, data: heatData, label: 'Sıcaklık', type: 'line' }
-
+      { fill: false, data: heatData, label: 'Sıcaklık', type: 'line' },
     ];
-
-
-
   }
   ngOnDestroy(): void {
     this.subscription1.unsubscribe();
     this.subscription2.unsubscribe();
   }
-
 }

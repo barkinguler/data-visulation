@@ -5,10 +5,9 @@ import { IgraphicInformations } from '../Imodel/IgraphicInformations';
 import { ILogs } from '../Imodel/Ilogs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NewgraphicService {
-
   equipments = new Subject<Ifavories>();
   machines = new Subject<Ifavories>();
   workerStatus = new Subject<Ifavories>();
@@ -17,13 +16,48 @@ export class NewgraphicService {
   private graphicOptions: IgraphicInformations[] = [];
 
   constructor() {
-    this.graphicOptions.push({ category: 'status', dataName: 'Kan Şekeri', isSelected: false, type: ['line', 'bar', 'scatter'] });
-    this.graphicOptions.push({ category: 'status', dataName: 'Tansiyon', isSelected: false, type: ['line', 'bar', 'scatter'] });
-    this.graphicOptions.push({ category: 'machine', dataName: 'Makine Sıcaklık', isSelected: false, type: ['line', 'bar', 'scatter'] });
-    this.graphicOptions.push({ category: 'equipment', dataName: 'Ekipman Yakınlık', isSelected: false, type: ['line', 'bar', 'scatter'] });
-    this.graphicOptions.push({ category: 'equipment', dataName: 'Ekipman Yükseklik', isSelected: false, type: ['line', 'bar', 'scatter'] });
-    this.graphicOptions.push({ category: 'equipment', dataName: 'Ekipman Sıcaklık', isSelected: false, type: ['line', 'bar', 'scatter'] });
-    this.graphicOptions.push({ category: 'equipment', dataName: 'Gözlük Takılma Bilgisi', isSelected: false, type: ['scatter'] });
+    this.graphicOptions.push({
+      category: 'status',
+      dataName: 'Kan Şekeri',
+      isSelected: false,
+      type: ['line', 'bar', 'scatter'],
+    });
+    this.graphicOptions.push({
+      category: 'status',
+      dataName: 'Tansiyon',
+      isSelected: false,
+      type: ['line', 'bar', 'scatter'],
+    });
+    this.graphicOptions.push({
+      category: 'machine',
+      dataName: 'Makine Sıcaklık',
+      isSelected: false,
+      type: ['line', 'bar', 'scatter'],
+    });
+    this.graphicOptions.push({
+      category: 'equipment',
+      dataName: 'Ekipman Yakınlık',
+      isSelected: false,
+      type: ['line', 'bar', 'scatter'],
+    });
+    this.graphicOptions.push({
+      category: 'equipment',
+      dataName: 'Ekipman Yükseklik',
+      isSelected: false,
+      type: ['line', 'bar', 'scatter'],
+    });
+    this.graphicOptions.push({
+      category: 'equipment',
+      dataName: 'Ekipman Sıcaklık',
+      isSelected: false,
+      type: ['line', 'bar', 'scatter'],
+    });
+    this.graphicOptions.push({
+      category: 'equipment',
+      dataName: 'Gözlük Takılma Bilgisi',
+      isSelected: false,
+      type: ['scatter'],
+    });
   }
 
   getgraphicOptions(): Array<IgraphicInformations> {
@@ -33,9 +67,7 @@ export class NewgraphicService {
   resetOptions() {
     for (let option of this.graphicOptions) {
       option.isSelected = false;
-
     }
-
   }
 
   save(value: Ifavories) {
@@ -44,8 +76,7 @@ export class NewgraphicService {
   }
 
   clear() {
-    this.customGraphicInformation = []
+    this.customGraphicInformation = [];
     this.customGraphic.next(this.customGraphicInformation);
   }
-
 }

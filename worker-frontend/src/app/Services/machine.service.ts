@@ -10,7 +10,8 @@ import { MessageService } from './message.service';
   providedIn: 'root',
 })
 export class MachineService {
-  private workerStatusApiBaseUrl = 'http://104.155.99.161:8080/machineLogsApi/v1/';
+  private workerStatusApiBaseUrl =
+    'http://104.155.99.161:8080/machineLogsApi/v1/';
 
   private logs = new Subject<ILogs[]>();
   private machineApiBaseUrl = 'http://104.155.99.161:8080/machineApi/v1/';
@@ -23,8 +24,7 @@ export class MachineService {
     private http: HttpClient,
     private authService: AuthService,
     private messageService: MessageService
-  ) {
-  }
+  ) {}
 
   findMachinesbyWorkerId(id: number): Observable<any> {
     document.body.style.cursor = 'wait';
@@ -47,7 +47,6 @@ export class MachineService {
         })
       );
   }
-
 
   getStoredLogs(): Observable<ILogs[]> {
     return this.logs;
@@ -75,10 +74,10 @@ export class MachineService {
   registerMachine(workerId: number, machineId: number): Observable<any> {
     return this.http.put(
       this.machineApiBaseUrl +
-      'updateWorkerIdByMachineId/' +
-      machineId +
-      '/' +
-      workerId,
+        'updateWorkerIdByMachineId/' +
+        machineId +
+        '/' +
+        workerId,
       null,
       { headers: this.header }
     );
@@ -86,11 +85,8 @@ export class MachineService {
 
   unregisterMachine(workerId: number): Observable<any> {
     return this.http.delete(
-      this.machineApiBaseUrl +
-      'deleteWorkerIdByMachineId/' +
-      workerId,
+      this.machineApiBaseUrl + 'deleteWorkerIdByMachineId/' + workerId,
       { headers: this.header }
     );
   }
-
 }

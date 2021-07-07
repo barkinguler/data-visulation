@@ -1,17 +1,25 @@
-<nav class="navbar navbar-dark bg-primary" style="background-color: #eef4f8;">
-  <div class="container-fluid" *ngIf="this.authservice.getUserRole() === 'worker'">
+<nav class="navbar navbar-dark bg-primary" style="background-color: #eef4f8">
+  <div
+    class="container-fluid"
+    *ngIf="this.authservice.getUserRole() === 'worker'"
+  >
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-          <li routerLinkActive="active"><a [routerLink]="['graphic']">Grafik</a></li>
-          <li routerLinkActive="active"><a [routerLink]="['register']">Makine Kayıt</a></li>
+        <li routerLinkActive="active">
+          <a [routerLink]="['graphic']">Grafik</a>
+        </li>
+        <li routerLinkActive="active">
+          <a [routerLink]="['register']">Makine Kayıt</a>
+        </li>
       </ul>
-      <ul *ngIf="this.authservice.getIsLogin()" class="nav navbar-nav navbar-right">
+      <ul
+        *ngIf="this.authservice.getIsLogin()"
+        class="nav navbar-nav navbar-right"
+      >
         <li>
-          <a style="cursor: pointer;" (click)="exit()">ÇIKIŞ</a>
+          <a style="cursor: pointer" (click)="exit()">ÇIKIŞ</a>
         </li>
       </ul>
     </div>
-  
-   
   </div>
 </nav>

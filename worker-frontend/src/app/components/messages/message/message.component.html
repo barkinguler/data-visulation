@@ -1,2 +1,6 @@
-<p *ngIf='messageService.getIsActive()'
-   [style.color]='messageService.getMessageColor()'>{{messageService.getMessage()}}</p>
+<p
+  *ngIf="messageService.getIsActive()"
+  [style.color]="messageService.getMessageColor()"
+>
+  {{ messageService.getMessage() }}
+</p>

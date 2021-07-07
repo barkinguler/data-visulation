@@ -12,35 +12,22 @@ import { WorkersService } from 'src/app/Services/workers.service';
 @Component({
   selector: 'app-workergraphic',
   templateUrl: './workergraphic.component.html',
-  styleUrls: ['./workergraphic.component.css']
+  styleUrls: ['./workergraphic.component.css'],
 })
 export class WorkergraphicComponent implements OnInit {
-  
-  constructor(private strokeService:StrokeService,private route: ActivatedRoute) { }
+  constructor(
+    private strokeService: StrokeService,
+    private route: ActivatedRoute
+  ) {}
   id;
   predict;
   ngOnInit() {
-
-    this.route.parent.params
-      .subscribe(
-        (params: Params) => {
-          this.id = +params['id'];
-          console.log("id",this.id);
-          this.strokeService.getPredict(this.id).subscribe(
-            value=>{
-              
-              
-              
-              this.predict=value;
-              
-              
-              });
-        });
-
+    this.route.parent.params.subscribe((params: Params) => {
+      this.id = +params['id'];
+      console.log('id', this.id);
+      this.strokeService.getPredict(this.id).subscribe((value) => {
+        this.predict = value;
+      });
+    });
   }
-
-
-
-
-
 }

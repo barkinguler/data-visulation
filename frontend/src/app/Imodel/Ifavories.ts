@@ -1,14 +1,11 @@
-import { ILogs } from "./Ilogs";
+import { ILogs } from './Ilogs';
 
-export interface Ifavories{
-    
-    data:any[]
-    label:string[]
-    type:String
-    id:number
-    chartOption?:any
-    machineId?:number
-    equipmentId?:number
-    
-    
-    }
+export interface Ifavories {
+  data: any[];
+  label: string[];
+  type: String;
+  id: number;
+  chartOption?: any;
+  machineId?: number;
+  equipmentId?: number;
+}

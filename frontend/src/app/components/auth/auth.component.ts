@@ -5,20 +5,18 @@ import { AuthService } from 'src/app/Services/auth.service';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent implements OnInit {
   userSystemInfo = {
     username: '',
-    password: ''
+    password: '',
   };
 
-
-  constructor(private router: Router, private authservice: AuthService) { }
+  constructor(private router: Router, private authservice: AuthService) {}
 
   isLogin = false;
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   async onSubmit(authForm) {
     await this.authservice.generateToken(this.userSystemInfo);
     if (this.authservice.getToken()) {
@@ -28,7 +26,5 @@ export class AuthComponent implements OnInit {
     } else {
       this.isLogin = true;
     }
-
   }
-
 }

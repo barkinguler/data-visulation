@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './components/auth/auth.component';
 
-
-
-
 import { EquipmentService } from './Services/equipment.service';
 
 import { LoginGuard } from './guard/login.guard';
@@ -18,42 +15,70 @@ import { MachineRegisterComponent } from './components/worker/machine-register/m
 import { MachineRegisterStartComponent } from './components/worker/machine-register/machine-register-start/machine-register-start.component';
 import { MachineStatusComponent } from './components/worker/machine-register/machine-status/machine-status.component';
 
-
 const routes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
   { path: 'auth', component: AuthComponent },
 
   {
-    path: ':id', component: WorkerComponent, canActivate: [LoginGuard], data: { expectedRole: ['worker'] },
-    children: [{ path: '', redirectTo: 'graphic', pathMatch: 'full', canActivate: [LoginGuard], data: { expectedRole: ['worker'] } },
-    {
-      path: 'graphic', component: WorkergraphicComponent, canActivate: [LoginGuard], data: { expectedRole: ['worker'] },
-      children: [{
-        path: '', component: MachineComponent,
-        canActivate: [LoginGuard], data: { expectedRole: ['worker'] }, outlet: 'machine'
-      },
-
-      { path: '', component: EquipmentComponent, canActivate: [LoginGuard], data: { expectedRole: ['worker'] }, outlet: 'equipment' },
-
+    path: ':id',
+    component: WorkerComponent,
+    canActivate: [LoginGuard],
+    data: { expectedRole: ['worker'] },
+    children: [
       {
-        path: '', component: WorkerstatusComponent, canActivate: [LoginGuard],
-        data: { expectedRole: ['worker'] }, outlet: 'workerstatus'
-      }]
-    }, {
-      path: 'register', component: MachineRegisterComponent, canActivate: [LoginGuard],
-      data: { expectedRole: ['worker'] }, children: [{ path: '', component: MachineRegisterStartComponent }, { path: ':machineid', component: MachineStatusComponent }]
-    }
-    ]
-  }];
+        path: '',
+        redirectTo: 'graphic',
+        pathMatch: 'full',
+        canActivate: [LoginGuard],
+        data: { expectedRole: ['worker'] },
+      },
+      {
+        path: 'graphic',
+        component: WorkergraphicComponent,
+        canActivate: [LoginGuard],
+        data: { expectedRole: ['worker'] },
+        children: [
+          {
+            path: '',
+            component: MachineComponent,
+            canActivate: [LoginGuard],
+            data: { expectedRole: ['worker'] },
+            outlet: 'machine',
+          },
 
+          {
+            path: '',
+            component: EquipmentComponent,
+            canActivate: [LoginGuard],
+            data: { expectedRole: ['worker'] },
+            outlet: 'equipment',
+          },
 
-
-
+          {
+            path: '',
+            component: WorkerstatusComponent,
+            canActivate: [LoginGuard],
+            data: { expectedRole: ['worker'] },
+            outlet: 'workerstatus',
+          },
+        ],
+      },
+      {
+        path: 'register',
+        component: MachineRegisterComponent,
+        canActivate: [LoginGuard],
+        data: { expectedRole: ['worker'] },
+        children: [
+          { path: '', component: MachineRegisterStartComponent },
+          { path: ':machineid', component: MachineStatusComponent },
+        ],
+      },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-
-}
+export class AppRoutingModule {}

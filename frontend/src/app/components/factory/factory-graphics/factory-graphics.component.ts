@@ -7,19 +7,10 @@ import { FactoriesService } from 'src/app/Services/factories.service';
 @Component({
   selector: 'app-factory-graphics',
   templateUrl: './factory-graphics.component.html',
-  styleUrls: ['./factory-graphics.component.css']
+  styleUrls: ['./factory-graphics.component.css'],
 })
 export class FactoryGraphicsComponent implements OnInit {
+  constructor() {}
 
-
-  constructor() { }
-
-  ngOnInit(): void {
-
-
-  }
-
-
-
-
+  ngOnInit(): void {}
 }

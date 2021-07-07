@@ -5,15 +5,10 @@ import { EquipmentService } from 'src/app/Services/equipment.service';
 @Component({
   selector: 'app-machine-register-start',
   templateUrl: './machine-register-start.component.html',
-  styleUrls: ['./machine-register-start.component.css']
+  styleUrls: ['./machine-register-start.component.css'],
 })
 export class MachineRegisterStartComponent implements OnInit {
-  
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-   
-
-  }
-
+  ngOnInit(): void {}
 }

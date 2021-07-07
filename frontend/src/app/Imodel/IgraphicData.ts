@@ -1,9 +1,5 @@
-export interface IgraphicData{
-    
-    data:number[]
-    label:string[]
-    type:string
-  
-
-    
-    }
+export interface IgraphicData {
+  data: number[];
+  label: string[];
+  type: string;
+}

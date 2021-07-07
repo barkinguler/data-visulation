@@ -4,28 +4,66 @@
 <form #form ngNativeValidate>
   <div class="form-group">
     <label for="exampleInputEmail1">EKİPMAN ADI</label>
-    <input [(ngModel)]='newEquipment.name' class="form-control" id="equipmentName" minlength=3 name="equipmentName"
-           required
-           placeholder="Ekipmanınızın Adını Giriniz" type="text">
+    <input
+      [(ngModel)]="newEquipment.name"
+      class="form-control"
+      id="equipmentName"
+      minlength="3"
+      name="equipmentName"
+      required
+      placeholder="Ekipmanınızın Adını Giriniz"
+      type="text"
+    />
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">EKİPMANIN GÖREVİ</label>
-    <input [(ngModel)]='newEquipment.job' class="form-control" id="job" minlength=3 name="job" required
-           placeholder="Ekipmanın Sağladığı Koruma Görevini Giriniz" type="text">
+    <input
+      [(ngModel)]="newEquipment.job"
+      class="form-control"
+      id="job"
+      minlength="3"
+      name="job"
+      required
+      placeholder="Ekipmanın Sağladığı Koruma Görevini Giriniz"
+      type="text"
+    />
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Ekipmana Ne Zaman Bakım Yapılacağını Giriniz</label>
-    <input [(ngModel)]='newEquipment.newMaintenanceDate' class="form-control" id="newFixDate" name="newFixDate" required
-           placeholder="Ekipmana Ne Zaman Bakım Yapılacağını Giriniz" type="date">
+    <label for="exampleInputEmail1"
+      >Ekipmana Ne Zaman Bakım Yapılacağını Giriniz</label
+    >
+    <input
+      [(ngModel)]="newEquipment.newMaintenanceDate"
+      class="form-control"
+      id="newFixDate"
+      name="newFixDate"
+      required
+      placeholder="Ekipmana Ne Zaman Bakım Yapılacağını Giriniz"
+      type="date"
+    />
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Ekipmana Yapılan Son Bakım Tarihini Giriniz</label>
-    <input [(ngModel)]='newEquipment.oldMaintenanceDate' class="form-control" id="oldFixDate" name="oldFixDate" required
-           placeholder="Ekipmana Yapılan Son Bakım Tarihini Giriniz" type="date">
+    <label for="exampleInputEmail1"
+      >Ekipmana Yapılan Son Bakım Tarihini Giriniz</label
+    >
+    <input
+      [(ngModel)]="newEquipment.oldMaintenanceDate"
+      class="form-control"
+      id="oldFixDate"
+      name="oldFixDate"
+      required
+      placeholder="Ekipmana Yapılan Son Bakım Tarihini Giriniz"
+      type="date"
+    />
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Ekipmanın Kullanım Yetki Derecesi</label>
-    <select [(ngModel)]='newEquipment.authorityLevel' class="form-control" name="authority" required>
+    <select
+      [(ngModel)]="newEquipment.authorityLevel"
+      class="form-control"
+      name="authority"
+      required
+    >
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -37,14 +75,22 @@
   </div>
   <div class="form-group">
     <label for="workPlaceId">Ekipmanın İşyeri Numarası</label>
-    <select [(ngModel)]='newEquipment.workplaceId'  class="form-control" name="workPlaceId" required>
-     
-       <option *ngFor="let workPlace of this.workPlaces">
-         {{workPlace.id}}
-       </option>
-     
+    <select
+      [(ngModel)]="newEquipment.workplaceId"
+      class="form-control"
+      name="workPlaceId"
+      required
+    >
+      <option *ngFor="let workPlace of this.workPlaces">
+        {{ workPlace.id }}
+      </option>
     </select>
   </div>
 
-  <button (click)="form.checkValidity() ? createEquipment() : null" class="btn btn-primary">Kayıt Et</button>
+  <button
+    (click)="form.checkValidity() ? createEquipment() : null"
+    class="btn btn-primary"
+  >
+    Kayıt Et
+  </button>
 </form>
